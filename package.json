@@ -1,0 +1,27 @@
+{
+  "name": "falcon_anime",
+  "version": "1.0.0",
+  "description": "anime streaming API",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/falcon71181/falcon_anime.git"
+  },
+  "keywords": [
+    "ani",
+    "anime",
+    "falcon",
+    "falcon71181"
+  ],
+  "author": "falcon71181",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/falcon71181/falcon_anime/issues"
+  },
+  "homepage": "https://github.com/falcon71181/falcon_anime#readme"
+}
