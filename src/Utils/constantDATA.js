@@ -7,3 +7,4 @@ export const ACCEPT = "text/html,application/xhtml+xml,application/xml;q=0.9,ima
 export const BASE_URL = "https://aniwatch.to";
 export const AJAX_URL = "https://aniwatch.to/ajax";
 export const HOME_URL = "https://aniwatch.to/home";
+export const SEARCH_URL = "https://aniwatch.to/search";
