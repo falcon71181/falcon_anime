@@ -1,10 +1,10 @@
-export const USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36";
+export const USER_AGENT_HEADER = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36";
+export const ACCEPT_ENCODING_HEADER = "gzip, deflate, br";
 
-export const ACCEPT_ENCODING = "gzip, deflate, br";
-
-export const ACCEPT = "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7";
-
-export const BASE_URL = "https://aniwatch.to";
-export const AJAX_URL = "https://aniwatch.to/ajax";
-export const HOME_URL = "https://aniwatch.to/home";
-export const SEARCH_URL = "https://aniwatch.to/search";
+export const URLs = {
+  BASE: "https://aniwatch.to",
+  AJAX: `${BASE_URL}/ajax`,
+  HOME: `${BASE_URL}/home`,
+  SEARCH: `${BASE_URL}/search`,
+};
+export const ACCEPT_HEADER = "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7";
