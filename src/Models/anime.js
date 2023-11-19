@@ -1,19 +1,17 @@
-export let Servers
-
-;(function(Servers) {
-  Servers["VidStreaming"] = "vidstreaming"
-  Servers["MegaCloud"] = "megacloud"
-  Servers["StreamSB"] = "streamsb"
-  Servers["StreamTape"] = "streamtape"
-  Servers["VidCloud"] = "vidcloud"
-  Servers["AsianLoad"] = "asianload"
-  Servers["GogoCDN"] = "gogocdn"
-  Servers["MixDrop"] = "mixdrop"
-  Servers["UpCloud"] = "upcloud"
-  Servers["VizCloud"] = "vizcloud"
-  Servers["MyCloud"] = "mycloud"
-  Servers["Filemoon"] = "filemoon"
-})(Servers || (Servers = {}))
+export const Servers = {
+  VidStreaming: "vidstreaming",
+  MegaCloud: "megacloud",
+  StreamSB: "streamsb",
+  StreamTape: "streamtape",
+  VidCloud: "vidcloud",
+  AsianLoad: "asianload",
+  GogoCDN: "gogocdn",
+  MixDrop: "mixdrop",
+  UpCloud: "upcloud",
+  VizCloud: "vizcloud",
+  MyCloud: "mycloud",
+  Filemoon: "filemoon"
+};
 
 export const animeCategories = [
   "most-favorite",
