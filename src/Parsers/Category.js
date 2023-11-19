@@ -1,4 +1,4 @@
-import { HttpError } from "http-errors";
+import createHttpError, { HttpError } from "http-errors";
 import axios, { AxiosError } from "axios";
 import { load, CheerioAPI, SelectorType } from "cheerio";
 import {
@@ -7,3 +7,10 @@ import {
     URLs,
     ACCEPT_HEADER
 } from '../Utils/constantDATA';
+
+async function scrapeCategory(category, page = 1) {
+    
+  }
+  
+  export default scrapeCategory;
+  
