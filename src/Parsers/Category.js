@@ -21,17 +21,20 @@ async function scrapeCategory(category, page = 1) {
         currentPage: Number(page),
         hasNextPage: false,
         totalPages: 1
-      }
+      };
 
     try {
-    const scrapeUrl = new URL(category, URLs.BASE)
+    const scrapeUrl = new URL(category, URLs.BASE);
     const mainPage = await axios.get(`${scrapeUrl}?page=${page}`, {
       headers: {
         "User-Agent": USER_AGENT_HEADER,
         "Accept-Encoding": ACCEPT_ENCODING_HEADER,
         Accept: ACCEPT_HEADER
       }
-    })
+    });
+
+    const $ = load(mainPage.data);
+
     } catch (err) {
         if (err instanceof AxiosError) {
             throw createHttpError(
@@ -39,7 +42,7 @@ async function scrapeCategory(category, page = 1) {
               err?.response?.statusText || "Something went wrong"
             )
           }
-          throw createHttpError.InternalServerError(err?.message)
+          throw createHttpError.InternalServerError(err?.message);
   }
   }
   
