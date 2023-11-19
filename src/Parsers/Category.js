@@ -25,6 +25,11 @@ async function scrapeCategory(category, page = 1) {
 
     try {
     const scrapeUrl = new URL(category, URLs.BASE);
+    
+    ////////////////////////////////////////
+    console.log(scrapeUrl); // for TESTING//
+    ////////////////////////////////////////
+
     const mainPage = await axios.get(`${scrapeUrl}?page=${page}`, {
       headers: {
         "User-Agent": USER_AGENT_HEADER,
@@ -38,6 +43,11 @@ async function scrapeCategory(category, page = 1) {
     return res;
 
     } catch (err) {
+
+      ////////////////////////////////////////////////////////////////
+      console.error("Error in scrapeCategory:", err); // for TESTING//
+      ////////////////////////////////////////////////////////////////
+
         if (err instanceof AxiosError) {
             throw createHttpError(
               err?.response?.status || 500,

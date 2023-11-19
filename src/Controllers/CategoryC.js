@@ -4,9 +4,19 @@ import scrapeCategory from "../Parsers/Category.js";
 
 const getCategory = async (req, res) => {
     try {
-        res.status(200).json(data);
+        const data = await scrapeCategory("tv",1);
+
+        ////////////////////////////////////
+        console.log(data);  // for TESTING//
+        ////////////////////////////////////
+
+        res.status(200).send("test worked");
     } catch (err) {
-        console.log(err);
+
+        ////////////////////////////////////
+        console.log(err);   // for TESTING//
+        ////////////////////////////////////
+        
     }
 }
 
