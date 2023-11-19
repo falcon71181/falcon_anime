@@ -5,6 +5,11 @@ import {
 
 const router = Router()
 
+//  /anime/test
+router.get("/test", (req,res) => {
+    res.send("Worked");
+});
+
 //  /anime
 router.get("/", (_, res) => res.redirect("/"));
 
