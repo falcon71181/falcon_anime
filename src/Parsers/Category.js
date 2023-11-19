@@ -22,7 +22,19 @@ async function scrapeCategory(category, page = 1) {
         hasNextPage: false,
         totalPages: 1
       }
-      
+
+    try {
+    const scrapeUrl = new URL(category, URLs.BASE)
+    const mainPage = await axios.get(`${scrapeUrl}?page=${page}`, {
+      headers: {
+        "User-Agent": USER_AGENT_HEADER,
+        "Accept-Encoding": ACCEPT_ENCODING_HEADER,
+        Accept: ACCEPT_HEADER
+      }
+    })
+    } catch (err) {
+    
+  }
   }
   
   export default scrapeCategory;
