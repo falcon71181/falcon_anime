@@ -3,8 +3,9 @@ export const ACCEPT_ENCODING_HEADER = "gzip, deflate, br";
 
 export const URLs = {
   BASE: "https://aniwatch.to",
-  AJAX: `${BASE_URL}/ajax`,
-  HOME: `${BASE_URL}/home`,
-  SEARCH: `${BASE_URL}/search`,
+  AJAX: "https://aniwatch.to/ajax",
+  HOME: "https://aniwatch.to/home",
+  SEARCH: "https://aniwatch.to/search",
 };
+
 export const ACCEPT_HEADER = "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7";

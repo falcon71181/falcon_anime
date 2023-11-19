@@ -1,12 +1,12 @@
 import createHttpError, { HttpError } from "http-errors";
 import axios, { AxiosError } from "axios";
-import { load, CheerioAPI, SelectorType } from "cheerio";
+import { load } from "cheerio";
 import {
     USER_AGENT_HEADER,
     ACCEPT_ENCODING_HEADER,
     URLs,
     ACCEPT_HEADER
-} from '../Utils/constantDATA';
+} from '../Utils/constantDATA.js';
 
 async function scrapeCategory(category, page = 1) {
     const res = {
@@ -34,6 +34,8 @@ async function scrapeCategory(category, page = 1) {
     });
 
     const $ = load(mainPage.data);
+
+    return res;
 
     } catch (err) {
         if (err instanceof AxiosError) {

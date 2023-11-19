@@ -1,7 +1,7 @@
 import Router from "express";
 import {
     getCategory
-} from '../Controllers/CategoryC';
+} from '../Controllers/CategoryC.js';
 
 const router = Router()
 

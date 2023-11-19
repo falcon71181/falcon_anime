@@ -1,6 +1,6 @@
 import createHttpError from "http-errors";
 import RequestHandler from "express";
-import scrapeCategory from "../Parsers/Category";
+import scrapeCategory from "../Parsers/Category.js";
 
 const getCategory = async (req, res) => {
     try {
@@ -10,4 +10,4 @@ const getCategory = async (req, res) => {
     }
 }
 
-export default getCategory;
+export { getCategory };
