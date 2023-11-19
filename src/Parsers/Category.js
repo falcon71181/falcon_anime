@@ -33,7 +33,13 @@ async function scrapeCategory(category, page = 1) {
       }
     })
     } catch (err) {
-    
+        if (err instanceof AxiosError) {
+            throw createHttpError(
+              err?.response?.status || 500,
+              err?.response?.statusText || "Something went wrong"
+            )
+          }
+          throw createHttpError.InternalServerError(err?.message)
   }
   }
   
