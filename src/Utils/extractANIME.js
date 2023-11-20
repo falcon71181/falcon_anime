@@ -23,7 +23,7 @@ export const extractAnimes = ($, selectors) => {
                 dub: noOfDubEps,
                 eps: totalNoOfEps,
                 duration: epLengthTime,
-                rated: adultRated === "18+"
+                rated: adultRated === "18+",
             });
         })
         return animes;
@@ -51,12 +51,22 @@ export const extractTOP10ANIMES = ($, periodType) => {
         $(selectors).each((index, element) => {
             const animeID = $(element).find(".film-detail .film-name .dynamic-name")?.attr("href")?.slice(1) ?? null;
             const animeNAME = $(element).find(".film-detail .film-name .dynamic-name")?.text()?.trim() ?? "UNKNOWN ANIME";
+            const animeRANK = $(element).find(".film-number span")?.text()?.trim() || null;
+            const noOfSubEps = $(element).find(".film-detail .fd-infor .tick-item.tick-sub")?.text() ?? null;
+            const noOfDubEps = $(element).find(".film-detail .fd-infor .tick-item.tick-dub")?.text() ?? null;
+            const totalNoOfEps = $(element).find(".film-detail .fd-infor .tick-item.tick-eps")?.text() ?? null;
+            const animeIMG = $(element).find(".film-poster .film-poster-img")?.attr("data-src")?.trim() || null
 
             animes.push({
                 sno: index,
                 id: animeID,
                 name: animeNAME,
-            });
+                rank: animeRANK,
+                img: animeIMG,
+                sub: noOfSubEps,
+                dub: noOfDubEps,
+                eps: totalNoOfEps,
+                });
         }) 
         return animes;
     } catch (error) {
