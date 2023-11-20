@@ -6,6 +6,8 @@ export const extractAnimes = ($, selectors) => {
         const animes = [];
         $(selectors).each((index,element) => {
 
+            const animeNAME = $(element).find(".film-detail .film-name .dynamic-name")?.text()?.trim() ?? "UNKNOWN ANIME";
+
             
         })
         return animes;
