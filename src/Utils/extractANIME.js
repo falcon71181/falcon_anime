@@ -12,11 +12,13 @@ export const extractAnimes = ($, selectors) => {
             const totalNoOfEps = $(element).find(".film-poster .tick .tick-eps")?.text() ?? null;
             const epLengthTime = $(element).find(".film-detail .fd-infor .fdi-duration")?.text()?.trim() ?? "UNKNOWN";
             const adultRated = $(element).find(".film-poster .tick-rate")?.text()?.trim() ?? null;
+            const animeIMG = $(element).find(".film-poster .film-poster-img").attr("data-src") ?? null;
 
             animes.push({
                 sno: index,
                 id: animeID,
                 name: animeNAME,
+                img: animeIMG,
                 sub: noOfSubEps,
                 dub: noOfDubEps,
                 eps: totalNoOfEps,
