@@ -2,7 +2,7 @@ import Router from "express";
 import {
     getCategory,
     getHome
-} from '../Controllers/ExportC.js';
+} from '../Controllers/Export.js';
 import {
     validateCategory
 } from '../Middleware/validateCategory.js';
