@@ -50,6 +50,20 @@ async function scrapeCategory(category, page = 1) {
     res.category =$(categorySelectors)?.text()?.trim() ?? category;
     res.animes = extractAnimes($,selectors);
     
+    $(top10Selectors).each((index, element) => {
+      const periodType = $(element).attr("id")?.split("-")?.pop()?.trim();
+      if (periodType === "day") {
+        res.top10Animes.today = extractTOP10ANIMES($, periodType);
+        return;
+      }
+      if (periodType === "week") {
+        res.top10Animes.week = extractTOP10ANIMES($, periodType);
+        return;
+      }
+      if (periodType === "month") {
+        res.top10Animes.month = extractTOP10ANIMES($, periodType);
+      }
+    })
 
     return res;
 
