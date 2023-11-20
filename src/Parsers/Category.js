@@ -8,7 +8,8 @@ import {
     ACCEPT_HEADER
 } from '../Utils/constantDATA.js';
 import {
-  extractAnimes
+  extractAnimes,
+  extractTOP10ANIMES
 } from '../Utils/extractANIME.js';
 
 async function scrapeCategory(category, page = 1) {
@@ -42,11 +43,13 @@ async function scrapeCategory(category, page = 1) {
     });
 
     const $ = load(mainPage.data);
-    const selectors = "#main-content .tab-content .film_list-wrap .flw-item"
-    const categorySelectors = "#main-content .block_area .block_area-header .cat-heading"
+    const selectors = "#main-content .tab-content .film_list-wrap .flw-item";
+    const categorySelectors = "#main-content .block_area .block_area-header .cat-heading";
+    const top10Selectors = '#main-sidebar .block_area-realtime [id^="top-viewed-"]';
     
     res.category =$(categorySelectors)?.text()?.trim() ?? category;
     res.animes = extractAnimes($,selectors);
+    
 
     return res;
 
