@@ -4,7 +4,7 @@ import scrapeCategory from "../Parsers/Category.js";
 
 const getCategory = async (req, res) => {
     try {
-        const data = await scrapeCategory("tv",1);
+        const data = await scrapeCategory(req.params.category,1);
         res.status(200).json(data);
     } catch (err) {
 
