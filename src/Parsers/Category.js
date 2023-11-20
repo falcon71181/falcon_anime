@@ -41,6 +41,9 @@ async function scrapeCategory(category, page = 1) {
     const $ = load(mainPage.data);
     const selectors = "#main-content .tab-content .film_list-wrap .flw-item"
     const categorySelectors = "#main-content .block_area .block_area-header .cat-heading"
+    
+    res.category =$(categorySelectors)?.text()?.trim() ?? category
+
     return res;
 
     } catch (err) {
