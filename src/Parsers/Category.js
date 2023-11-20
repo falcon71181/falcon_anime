@@ -39,6 +39,7 @@ async function scrapeCategory(category, page = 1) {
     });
 
     const $ = load(mainPage.data);
+    const selectora = "#main-content .tab-content .film_list-wrap .flw-item"
 
     return res;
 
