@@ -36,7 +36,14 @@ export const extractTOP10ANIMES = ($, periodType) => {
         const animes = [];
         const selectors = `#top-viewed-${periodType} ul li`;
 
-        
+        $(selectors).each((index, element) => {
+            const animeID = $(element).find(".film-detail .film-name .dynamic-name")?.attr("href")?.slice(1) ?? null;
+            
+            animes.push({
+                sno: index,
+                id: animeID,
+            });
+        }) 
         return animes;
     } catch (error) {
         
