@@ -9,13 +9,15 @@ export const extractAnimes = ($, selectors) => {
             const animeNAME = $(element).find(".film-detail .film-name .dynamic-name")?.text()?.trim() ?? "UNKNOWN ANIME";
             const noOfSubEps = $(element).find(".film-poster .tick .tick-sub")?.text() ?? null;
             const noOfDubEps = $(element).find(".film-poster .tick .tick-dub")?.text() ?? null;
+            const totalNoOfEps = $(element).find(".film-poster .tick .tick-eps")?.text() ?? null;
 
             animes.push({
                 sno: index,
                 id: animeID,
                 name: animeNAME,
                 sub: noOfSubEps,
-                dub: noOfDubEps
+                dub: noOfDubEps,
+                eps: totalNoOfEps
             });
         })
         return animes;
