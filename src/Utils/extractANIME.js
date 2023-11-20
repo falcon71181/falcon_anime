@@ -1,4 +1,3 @@
-import { CheerioAPI, SelectorType } from "cheerio";
 import createHttpError, { HttpError } from "http-errors";
 
 export const extractAnimes = ($, selectors) => {
@@ -9,7 +8,7 @@ export const extractAnimes = ($, selectors) => {
             const animeNAME = $(element).find(".film-detail .film-name .dynamic-name")?.text()?.trim() ?? "UNKNOWN ANIME";
 
             animes.push({
-                id: index,
+                sno: index,
                 name: animeNAME,
             });
         })
