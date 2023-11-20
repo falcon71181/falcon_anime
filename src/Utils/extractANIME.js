@@ -3,7 +3,7 @@ import createHttpError, { HttpError } from "http-errors";
 export const extractAnimes = ($, selectors) => {
     try {
         const animes = [];
-        $(selectors).each((index,element) => {
+        $(selectors).each((index, element) => {
 
             const animeID = $(element).find(".film-detail .film-name .dynamic-name")?.attr("href")?.slice(1) ?? null;
             const animeNAME = $(element).find(".film-detail .film-name .dynamic-name")?.text()?.trim() ?? "UNKNOWN ANIME";
@@ -31,9 +31,13 @@ export const extractAnimes = ($, selectors) => {
     }
 }
 
-export const extractTOP10ANIMES = () => {
+export const extractTOP10ANIMES = ($, periodType) => {
     try {
+        const animes = [];
+        const selectors = `#top-viewed-${periodType} ul li`;
+
         
+        return animes;
     } catch (error) {
         
     }
