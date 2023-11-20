@@ -7,6 +7,9 @@ import {
     URLs,
     ACCEPT_HEADER
 } from '../Utils/constantDATA.js';
+import {
+  extractAnimes
+} from '../Utils/extractANIME.js';
 
 async function scrapeCategory(category, page = 1) {
     const res = {
@@ -27,7 +30,7 @@ async function scrapeCategory(category, page = 1) {
     const scrapeUrl = new URL(category, URLs.BASE);
     
     ////////////////////////////////////////
-    console.log(scrapeUrl); // for TESTING//
+    //console.log(scrapeUrl); // for TESTING//
     ////////////////////////////////////////
 
     const mainPage = await axios.get(`${scrapeUrl}?page=${page}`, {
@@ -42,7 +45,8 @@ async function scrapeCategory(category, page = 1) {
     const selectors = "#main-content .tab-content .film_list-wrap .flw-item"
     const categorySelectors = "#main-content .block_area .block_area-header .cat-heading"
     
-    res.category =$(categorySelectors)?.text()?.trim() ?? category
+    res.category =$(categorySelectors)?.text()?.trim() ?? category;
+    res.animes = extractAnimes($,selectors);
 
     return res;
 

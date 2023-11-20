@@ -10,7 +10,7 @@ const getCategory = async (req, res) => {
         console.log(data);  // for TESTING//
         ////////////////////////////////////
 
-        res.status(200).send("test worked");
+        res.status(200).json(data);
     } catch (err) {
 
         ////////////////////////////////////
