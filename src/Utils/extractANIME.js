@@ -17,7 +17,7 @@ export const extractAnimes = ($, selectors) => {
     } catch (err) {
 
         ////////////////////////////////////////////////////////////////
-        console.error("Error in scrapeCategory:", err); // for TESTING//
+        console.error("Error in scraping ANIME Details :", err); // for TESTING//
         ////////////////////////////////////////////////////////////////
   
           if (err instanceof AxiosError) {
