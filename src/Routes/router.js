@@ -1,7 +1,8 @@
 import Router from "express";
 import {
-    getCategory
-} from '../Controllers/CategoryC.js';
+    getCategory,
+    getHome
+} from '../Controllers/ExportC.js';
 import {
     validateCategory
 } from '../Middleware/validateCategory.js';
@@ -15,6 +16,9 @@ router.get("/test", (req,res) => {
 
 //  /anime
 router.get("/", (_, res) => res.redirect("/"));
+
+//  /anime/home
+router.get("/home", getHome);
 
 //  /anime/category?page=${page}
 router.get("/:category", validateCategory, getCategory);
