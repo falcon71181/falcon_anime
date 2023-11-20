@@ -33,6 +33,7 @@ export async function scrapeHome() {
         });
         const $ = load(mainPage.data);
         const trendingAnimeSelectors = "#anime-trending #trending-home .swiper-wrapper .swiper-slide";
+        const top10Selectors = '#main-sidebar .block_area-realtime [id^="top-viewed-"]';
 
         $(trendingAnimeSelectors).each((index, element) => {
             const animeID = $(element).find(".item .film-poster")?.attr("href")?.slice(1) || null;
@@ -45,6 +46,22 @@ export async function scrapeHome() {
                 img: animeIMG
             })
         })
+
+        $(top10Selectors).each((index, element) => {
+          const periodType = $(element).attr("id")?.split("-")?.pop()?.trim();
+          if (periodType === "day") {
+            res.top10Animes.today = extractTOP10ANIMES($, periodType);
+            return;
+          }
+          if (periodType === "week") {
+            res.top10Animes.week = extractTOP10ANIMES($, periodType);
+            return;
+          }
+          if (periodType === "month") {
+            res.top10Animes.month = extractTOP10ANIMES($, periodType);
+          }
+        })
+
         return res;
     } catch (err) {
 
