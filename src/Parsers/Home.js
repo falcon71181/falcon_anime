@@ -12,8 +12,17 @@ import {
   extractTOP10ANIMES
 } from '../Utils/extractANIME.js';
 
-async function scrapeHome() {
-    
+export async function scrapeHome() {
+    const res = {
+        trendingAnimes: [],
+        top10Animes: {
+            today: [],
+            week: [],
+            month: []
+          },
+        topAiringAnimes: [],
+        genres: [],
+    };
     try {
         const mainPage = await axios.get(URLs.HOME, {
             headers: {
@@ -30,7 +39,7 @@ async function scrapeHome() {
             const animeNAME = $(element).find(".item .number .film-title.dynamic-name")?.text()?.trim() ?? "UNKNOWN ANIME";
             const animeIMG = $(element).find(".item .film-poster .film-poster-img")?.attr("data-src")?.trim();
 
-            res.animes.push({
+            res.trendingAnimes.push({
                 id: animeID,
                 name: animeNAME,
                 img: animeIMG
