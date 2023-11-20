@@ -11,6 +11,7 @@ export const extractAnimes = ($, selectors) => {
             const noOfDubEps = $(element).find(".film-poster .tick .tick-dub")?.text() ?? null;
             const totalNoOfEps = $(element).find(".film-poster .tick .tick-eps")?.text() ?? null;
             const epLengthTime = $(element).find(".film-detail .fd-infor .fdi-duration")?.text()?.trim() ?? "UNKNOWN";
+            const adultRated = $(element).find(".film-poster .tick-rate")?.text()?.trim() ?? null;
 
             animes.push({
                 sno: index,
@@ -19,7 +20,8 @@ export const extractAnimes = ($, selectors) => {
                 sub: noOfSubEps,
                 dub: noOfDubEps,
                 eps: totalNoOfEps,
-                duration: epLengthTime
+                duration: epLengthTime,
+                rated: adultRated === "18+"
             });
         })
         return animes;
