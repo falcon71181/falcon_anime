@@ -5,10 +5,12 @@ export const extractAnimes = ($, selectors) => {
         const animes = [];
         $(selectors).each((index,element) => {
 
+            const animeID = $(element).find(".film-detail .film-name .dynamic-name")?.attr("href")?.slice(1) ?? null;
             const animeNAME = $(element).find(".film-detail .film-name .dynamic-name")?.text()?.trim() ?? "UNKNOWN ANIME";
 
             animes.push({
                 sno: index,
+                id: animeID,
                 name: animeNAME,
             });
         })
