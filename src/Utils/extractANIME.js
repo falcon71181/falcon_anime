@@ -14,7 +14,18 @@ export const extractAnimes = ($, selectors) => {
             });
         })
         return animes;
-    } catch (error) {
-        
+    } catch (err) {
+
+        ////////////////////////////////////////////////////////////////
+        console.error("Error in scrapeCategory:", err); // for TESTING//
+        ////////////////////////////////////////////////////////////////
+  
+          if (err instanceof AxiosError) {
+              throw createHttpError(
+                err?.response?.status || 500,
+                err?.response?.statusText || "Something went wrong"
+              )
+            }
+            throw createHttpError.InternalServerError(err?.message);
     }
 }
