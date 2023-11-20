@@ -10,6 +10,7 @@ export const extractAnimes = ($, selectors) => {
             const noOfSubEps = $(element).find(".film-poster .tick .tick-sub")?.text() ?? null;
             const noOfDubEps = $(element).find(".film-poster .tick .tick-dub")?.text() ?? null;
             const totalNoOfEps = $(element).find(".film-poster .tick .tick-eps")?.text() ?? null;
+            const epLengthTime = $(element).find(".film-detail .fd-infor .fdi-duration")?.text()?.trim() ?? "UNKNOWN";
 
             animes.push({
                 sno: index,
@@ -17,7 +18,8 @@ export const extractAnimes = ($, selectors) => {
                 name: animeNAME,
                 sub: noOfSubEps,
                 dub: noOfDubEps,
-                eps: totalNoOfEps
+                eps: totalNoOfEps,
+                duration: epLengthTime
             });
         })
         return animes;
