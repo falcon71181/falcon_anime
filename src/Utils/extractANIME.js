@@ -8,7 +8,10 @@ export const extractAnimes = ($, selectors) => {
 
             const animeNAME = $(element).find(".film-detail .film-name .dynamic-name")?.text()?.trim() ?? "UNKNOWN ANIME";
 
-            
+            animes.push({
+                id: index,
+                name: animeNAME,
+            });
         })
         return animes;
     } catch (error) {
