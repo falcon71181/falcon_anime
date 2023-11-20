@@ -7,11 +7,13 @@ export const extractAnimes = ($, selectors) => {
 
             const animeID = $(element).find(".film-detail .film-name .dynamic-name")?.attr("href")?.slice(1) ?? null;
             const animeNAME = $(element).find(".film-detail .film-name .dynamic-name")?.text()?.trim() ?? "UNKNOWN ANIME";
+            const noOfSubEps = $(element).find(".film-poster .tick .tick-sub")?.text() ?? null;
 
             animes.push({
                 sno: index,
                 id: animeID,
                 name: animeNAME,
+                cc: noOfSubEps
             });
         })
         return animes;
