@@ -30,3 +30,11 @@ export const extractAnimes = ($, selectors) => {
             throw createHttpError.InternalServerError(err?.message);
     }
 }
+
+export const extractTOP10ANIMES = () => {
+    try {
+        
+    } catch (error) {
+        
+    }
+}
