@@ -5,14 +5,14 @@ export const extractAnimes = ($, selectors) => {
         const animes = [];
         $(selectors).each((index, element) => {
 
-            const animeID = $(element).find(".film-detail .film-name .dynamic-name")?.attr("href")?.slice(1) ?? null;
+            const animeID = $(element).find(".film-detail .film-name .dynamic-name")?.attr("href")?.slice(1) || null;
             const animeNAME = $(element).find(".film-detail .film-name .dynamic-name")?.text()?.trim() ?? "UNKNOWN ANIME";
-            const noOfSubEps = $(element).find(".film-poster .tick .tick-sub")?.text() ?? null;
-            const noOfDubEps = $(element).find(".film-poster .tick .tick-dub")?.text() ?? null;
-            const totalNoOfEps = $(element).find(".film-poster .tick .tick-eps")?.text() ?? null;
+            const noOfSubEps = $(element).find(".film-poster .tick .tick-sub")?.text() || null;
+            const noOfDubEps = $(element).find(".film-poster .tick .tick-dub")?.text() || null;
+            const totalNoOfEps = $(element).find(".film-poster .tick .tick-eps")?.text() || null;
             const epLengthTime = $(element).find(".film-detail .fd-infor .fdi-duration")?.text()?.trim() ?? "UNKNOWN";
-            const adultRated = $(element).find(".film-poster .tick-rate")?.text()?.trim() ?? null;
-            const animeIMG = $(element).find(".film-poster .film-poster-img").attr("data-src") ?? null;
+            const adultRated = $(element).find(".film-poster .tick-rate")?.text()?.trim() || null;
+            const animeIMG = $(element).find(".film-poster .film-poster-img").attr("data-src") || null;
 
             animes.push({
                 sno: index,
@@ -49,12 +49,12 @@ export const extractTOP10ANIMES = ($, periodType) => {
         const selectors = `#top-viewed-${periodType} ul li`;
 
         $(selectors).each((index, element) => {
-            const animeID = $(element).find(".film-detail .film-name .dynamic-name")?.attr("href")?.slice(1) ?? null;
+            const animeID = $(element).find(".film-detail .film-name .dynamic-name")?.attr("href")?.slice(1) || null;
             const animeNAME = $(element).find(".film-detail .film-name .dynamic-name")?.text()?.trim() ?? "UNKNOWN ANIME";
             const animeRANK = $(element).find(".film-number span")?.text()?.trim() || null;
-            const noOfSubEps = $(element).find(".film-detail .fd-infor .tick-item.tick-sub")?.text() ?? null;
-            const noOfDubEps = $(element).find(".film-detail .fd-infor .tick-item.tick-dub")?.text() ?? null;
-            const totalNoOfEps = $(element).find(".film-detail .fd-infor .tick-item.tick-eps")?.text() ?? null;
+            const noOfSubEps = $(element).find(".film-detail .fd-infor .tick-item.tick-sub")?.text() || null;
+            const noOfDubEps = $(element).find(".film-detail .fd-infor .tick-item.tick-dub")?.text() || null;
+            const totalNoOfEps = $(element).find(".film-detail .fd-infor .tick-item.tick-eps")?.text() || null;
             const animeIMG = $(element).find(".film-poster .film-poster-img")?.attr("data-src")?.trim() || null
 
             animes.push({
