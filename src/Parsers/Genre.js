@@ -7,12 +7,18 @@ import {
     URLs,
     ACCEPT_HEADER
 } from '../Utils/constantDATA.js';
+import { 
+    extractAnimes,
+    extractTopAiringAnimes,
+    extractGenreList
+} from "../Utils/extractANIME.js";
 
 export async function scrapeGenre(genre, page) {
     const res = {
         title: "",
         animes: [],
         topAiringAnimes: [],
+        genre: [],
         totalPages: 1,
         hasNextPage: false,
         currentPage: Number(page),
@@ -32,8 +38,13 @@ export async function scrapeGenre(genre, page) {
 
     const genreTitleSelectors = "#main-content .block_area .block_area-header .cat-heading";
     const selectors = "#main-content .tab-content .film_list-wrap .flw-item";
+    const topAiringSelectors = "#main-sidebar .block_area.block_area_sidebar.block_area-realtime .anif-block-ul ul li";
+    const genreSelectors = "#main-sidebar .block_area.block_area_sidebar.block_area-genres .sb-genre-list li";
 
     res.title = $(genreTitleSelectors)?.text()?.trim() ?? genre;
+    res.animes = extractAnimes($, selectors);
+    res.topAiringAnimes = extractTopAiringAnimes($, topAiringSelectors);
+    res.genre = extractGenreList($, genreSelectors);
     
     return res;
 } catch (err) {
