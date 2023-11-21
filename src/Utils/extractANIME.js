@@ -163,12 +163,15 @@ export const extractSpotLightAnime = ($, selectors) => {
       const animeDESCRIPTION = $(element).find(".deslide-item-content .desi-description")?.text()?.split("[")?.shift()?.trim() ?? "UNKNOW ANIME DESCRIPTION";
       const animeEXTRA = $(element).find(".deslide-item-content .sc-detail .scd-item").map((i, el) => $(el).text().trim()).get();
 
+      const episodeDetails = animeEXTRA[4].split(/\s+/).map(Number) || null;
       const animeExtraInfo = {
         category: animeEXTRA[0] || null,
         duration: animeEXTRA[1] || null,
         releasedDay: animeEXTRA[2] || null,
         quality: animeEXTRA[3] || null,
-        eps: animeEXTRA[4] || null
+        sub: episodeDetails[0] || null,
+        dub: episodeDetails[1] || null,
+        eps: episodeDetails[2] || null
       };
 
       animes.push({
