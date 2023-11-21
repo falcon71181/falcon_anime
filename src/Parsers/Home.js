@@ -9,7 +9,9 @@ import {
 } from '../Utils/constantDATA.js';
 import {
   extractAnimes,
-  extractTOP10ANIMES
+  extractTOP10ANIMES,
+  extractTrendingAnime,
+  extractTopAiringAnimes
 } from '../Utils/extractANIME.js';
 
 export async function scrapeHome() {
@@ -38,18 +40,7 @@ export async function scrapeHome() {
         const topAiringSelectors = "#anime-featured .row div:nth-of-type(1) .anif-block-ul ul li";
         const topUpcomingSelectors = "#main-content .block_area_home:nth-of-type(3) .tab-content .film_list-wrap .flw-item";
 
-        $(trendingAnimeSelectors).each((index, element) => {
-            const animeID = $(element).find(".item .film-poster")?.attr("href")?.slice(1) || null;
-            const animeNAME = $(element).find(".item .number .film-title.dynamic-name")?.text()?.trim() ?? "UNKNOWN ANIME";
-            const animeIMG = $(element).find(".item .film-poster .film-poster-img")?.attr("data-src")?.trim();
-
-            res.trendingAnimes.push({
-                sno: index,
-                id: animeID,
-                name: animeNAME,
-                img: animeIMG
-            })
-        })
+        res.trendingAnimes = extractTrendingAnime($, trendingAnimeSelectors);
 
         $(top10Selectors).each((index, element) => {
           const periodType = $(element).attr("id")?.split("-")?.pop()?.trim();
@@ -66,20 +57,7 @@ export async function scrapeHome() {
           }
         })
 
-        $(topAiringSelectors).each((index, element) => {
-          const animeID = $(element).find(".film-detail .film-name .dynamic-name")?.attr("href")?.slice(1)?.trim() || null;
-          const animeNAME = $(element).find(".film-detail .film-name .dynamic-name")?.text()?.trim() ?? "UNKNOWN ANIME";
-          const animeIMG = $(element).find(".film-poster a .film-poster-img")?.attr("data-src")?.trim();
-
-          res.topAiringAnimes.push({
-            sno: index,
-            id: animeID,
-            name: animeNAME,
-            img: animeIMG
-          })
-
-        })
-
+        res.topAiringAnimes = extractTopAiringAnimes($, topAiringSelectors);
         res.topUpcomingAnimes = extractAnimes($, topUpcomingSelectors);
 
         return res;
