@@ -12,11 +12,13 @@ import {
   extractTOP10ANIMES,
   extractTrendingAnime,
   extractTopAiringAnimes,
+  extractSpotLightAnime,
   extractGenreList
 } from '../Utils/extractANIME.js';
 
 export async function scrapeHome() {
     const res = {
+        spotLightAnimes: [],
         trendingAnimes: [],
         top10Animes: {
             today: [],
@@ -40,11 +42,13 @@ export async function scrapeHome() {
         const top10Selectors = '#main-sidebar .block_area-realtime [id^="top-viewed-"]';
         const topAiringSelectors = "#anime-featured .row div:nth-of-type(1) .anif-block-ul ul li";
         const topUpcomingSelectors = "#main-content .block_area_home:nth-of-type(3) .tab-content .film_list-wrap .flw-item";
+        const spotLightSelectors = "#slider .swiper-wrapper .swiper-slide";
         const genresSelectors = "#main-sidebar .block_area.block_area_sidebar.block_area-genres .sb-genre-list li";
 
         res.trendingAnimes = extractTrendingAnime($, trendingAnimeSelectors);
         res.topAiringAnimes = extractTopAiringAnimes($, topAiringSelectors);
         res.topUpcomingAnimes = extractAnimes($, topUpcomingSelectors);
+        res.spotLightAnimes = extractSpotLightAnime($, spotLightSelectors);
         res.genres = extractGenreList($, genresSelectors);
 
         $(top10Selectors).each((index, element) => {

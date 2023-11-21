@@ -151,6 +151,54 @@ export const extractTopAiringAnimes = ($, selectors) => {
     }
 }
 
+export const extractSpotLightAnime = ($, selectors) => {
+  try {
+    const animes = [];
+
+    $(selectors).each((index, element) => {
+      const animeID = $(element).find(".deslide-item-content .desi-buttons a")?.last()?.attr("href")?.slice(1)?.trim() || null;
+      const animeNAME = $(element).find(".deslide-item-content .desi-head-title.dynamic-name")?.text()?.trim() ?? "UNKNOWN ANIME";
+      const animeRANK = $(element).find(".deslide-item-content .desi-sub-text")?.text()?.trim()?.split(" ")[0]?.slice(1) || null;
+      const animeIMG = $(element).find(".deslide-cover .deslide-cover-img .film-poster-img")?.attr("data-src")?.trim();
+      const animeDESCRIPTION = $(element).find(".deslide-item-content .desi-description")?.text()?.split("[")?.shift()?.trim() ?? "UNKNOW ANIME DESCRIPTION";
+      const animeEXTRA = $(element).find(".deslide-item-content .sc-detail .scd-item").map((i, el) => $(el).text().trim()).get();
+
+      const animeExtraInfo = {
+        category: animeEXTRA[0] || null,
+        duration: animeEXTRA[1] || null,
+        releasedDay: animeEXTRA[2] || null,
+        quality: animeEXTRA[3] || null,
+        eps: animeEXTRA[4] || null
+      };
+
+      animes.push({
+        sno: index,
+        id: animeID,
+        name: animeNAME,
+        rank: animeRANK,
+        img: animeIMG,
+        extra: animeExtraInfo,
+        description: animeDESCRIPTION
+      })
+    })
+
+    return animes;
+  } catch (err) {
+
+    ////////////////////////////////////////////////////////////////
+    console.error("Error in extractSpotLightAnime :", err); // for TESTING//
+    ////////////////////////////////////////////////////////////////
+
+      if (err instanceof AxiosError) {
+          throw createHttpError(
+            err?.response?.status || 500,
+            err?.response?.statusText || "Something went wrong"
+          )
+        }
+        throw createHttpError.InternalServerError(err?.message);
+}
+}
+
 export const extractGenreList = ($, selectors) => {
   try {
     const genres = [];
