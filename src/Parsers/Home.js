@@ -21,6 +21,7 @@ export async function scrapeHome() {
             month: []
           },
         topAiringAnimes: [],
+        topUpcomingAnimes: [],
         genres: [],
     };
     try {
@@ -35,6 +36,7 @@ export async function scrapeHome() {
         const trendingAnimeSelectors = "#anime-trending #trending-home .swiper-wrapper .swiper-slide";
         const top10Selectors = '#main-sidebar .block_area-realtime [id^="top-viewed-"]';
         const topAiringSelectors = "#anime-featured .row div:nth-of-type(1) .anif-block-ul ul li";
+        const topUpcomingSelectors = "#main-content .block_area_home:nth-of-type(3) .tab-content .film_list-wrap .flw-item";
 
         $(trendingAnimeSelectors).each((index, element) => {
             const animeID = $(element).find(".item .film-poster")?.attr("href")?.slice(1) || null;
@@ -77,6 +79,8 @@ export async function scrapeHome() {
           })
 
         })
+
+        res.topUpcomingAnimes = extractAnimes($, topUpcomingSelectors);
 
         return res;
     } catch (err) {
