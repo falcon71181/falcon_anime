@@ -5,6 +5,7 @@ export const URLs = {
   BASE: "https://aniwatch.to",
   HOME: "https://aniwatch.to/home",
   SEARCH: "https://aniwatch.to/search",
+  GENRE: "https://aniwatch.to/genre",
 };
 
 export const ACCEPT_HEADER = "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7";
