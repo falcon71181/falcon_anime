@@ -10,7 +10,7 @@ import {
 
 export async function scrapeGenre(genre, page) {
     const res = {
-        title,
+        title: "",
         animes: [],
         topAiringAnimes: [],
         totalPages: 1,
@@ -18,9 +18,9 @@ export async function scrapeGenre(genre, page) {
         currentPage: Number(page),
     }
 
-    const genreURL = new URL(genreTitle, URLs.BASE);
-
-    const mainPage = await axios.get(genreURL, {
+    try {
+        const genreURL = new URL(`${URLs.GENRE}/${genre}`);
+        const mainPage = await axios.get(`${genreURL}?page=${page}`, {
         headers: {
           "User-Agent": USER_AGENT_HEADER,
           "Accept-Encoding": ACCEPT_ENCODING_HEADER,
@@ -34,4 +34,20 @@ export async function scrapeGenre(genre, page) {
     const selectors = "#main-content .tab-content .film_list-wrap .flw-item";
 
     res.title = $(genreTitleSelectors)?.text()?.trim() ?? genre;
+    
+    return res;
+} catch (err) {
+
+    ////////////////////////////////////////////////////////////////
+    console.error("Error in scrapeGenre:", err); // for TESTING//
+    ////////////////////////////////////////////////////////////////
+
+      if (err instanceof AxiosError) {
+          throw createHttpError(
+            err?.response?.status || 500,
+            err?.response?.statusText || "Something went wrong"
+          )
+        }
+        throw createHttpError.InternalServerError(err?.message);
+}
 }

@@ -1,4 +1,4 @@
-import { scrapeGenre } from "../Parsers/Genre";
+import { scrapeGenre } from "../Parsers/Genre.js";
 
 const getGenre = async (req, res) => {
     try {
