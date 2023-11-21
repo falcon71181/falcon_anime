@@ -150,3 +150,27 @@ export const extractTopAiringAnimes = ($, selectors) => {
             throw createHttpError.InternalServerError(err?.message);
     }
 }
+
+export const extractGenreList = ($, selectors) => {
+  try {
+    const genres = [];
+
+    $(selectors).each((index, element) => {
+      genres.push(`${$(element)?.text()?.trim() || null}`);
+    });
+    return genres;
+  } catch (err) {
+
+    ////////////////////////////////////////////////////////////////
+    console.error("Error in extractGenreList :", err); // for TESTING//
+    ////////////////////////////////////////////////////////////////
+
+      if (err instanceof AxiosError) {
+          throw createHttpError(
+            err?.response?.status || 500,
+            err?.response?.statusText || "Something went wrong"
+          )
+        }
+        throw createHttpError.InternalServerError(err?.message);
+}
+}

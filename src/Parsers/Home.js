@@ -11,7 +11,8 @@ import {
   extractAnimes,
   extractTOP10ANIMES,
   extractTrendingAnime,
-  extractTopAiringAnimes
+  extractTopAiringAnimes,
+  extractGenreList
 } from '../Utils/extractANIME.js';
 
 export async function scrapeHome() {
@@ -39,8 +40,12 @@ export async function scrapeHome() {
         const top10Selectors = '#main-sidebar .block_area-realtime [id^="top-viewed-"]';
         const topAiringSelectors = "#anime-featured .row div:nth-of-type(1) .anif-block-ul ul li";
         const topUpcomingSelectors = "#main-content .block_area_home:nth-of-type(3) .tab-content .film_list-wrap .flw-item";
+        const genresSelectors = "#main-sidebar .block_area.block_area_sidebar.block_area-genres .sb-genre-list li";
 
         res.trendingAnimes = extractTrendingAnime($, trendingAnimeSelectors);
+        res.topAiringAnimes = extractTopAiringAnimes($, topAiringSelectors);
+        res.topUpcomingAnimes = extractAnimes($, topUpcomingSelectors);
+        res.genres = extractGenreList($, genresSelectors);
 
         $(top10Selectors).each((index, element) => {
           const periodType = $(element).attr("id")?.split("-")?.pop()?.trim();
@@ -56,9 +61,6 @@ export async function scrapeHome() {
             res.top10Animes.month = extractTOP10ANIMES($, periodType);
           }
         })
-
-        res.topAiringAnimes = extractTopAiringAnimes($, topAiringSelectors);
-        res.topUpcomingAnimes = extractAnimes($, topUpcomingSelectors);
 
         return res;
     } catch (err) {

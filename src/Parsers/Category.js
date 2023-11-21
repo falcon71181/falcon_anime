@@ -9,18 +9,19 @@ import {
 } from '../Utils/constantDATA.js';
 import {
   extractAnimes,
-  extractTOP10ANIMES
+  extractTOP10ANIMES,
+  extractGenreList
 } from '../Utils/extractANIME.js';
 
 async function scrapeCategory(category, page = 1) {
     const res = {
         animes: [],
-        genres: [],
         top10Animes: {
           today: [],
           week: [],
           month: []
         },
+        genres: [],
         category,
         currentPage: Number(page),
         hasNextPage: false,
@@ -46,9 +47,11 @@ async function scrapeCategory(category, page = 1) {
     const selectors = "#main-content .tab-content .film_list-wrap .flw-item";
     const categorySelectors = "#main-content .block_area .block_area-header .cat-heading";
     const top10Selectors = '#main-sidebar .block_area-realtime [id^="top-viewed-"]';
+    const genresSelectors = "#main-sidebar .block_area.block_area_sidebar.block_area-genres .sb-genre-list li";
     
     res.category =$(categorySelectors)?.text()?.trim() ?? category;
-    res.animes = extractAnimes($,selectors);
+    res.animes = extractAnimes($, selectors);
+    res.genres = extractGenreList($, genresSelectors);
     
     $(top10Selectors).each((index, element) => {
       const periodType = $(element).attr("id")?.split("-")?.pop()?.trim();
