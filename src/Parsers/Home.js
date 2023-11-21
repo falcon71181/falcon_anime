@@ -64,7 +64,7 @@ export async function scrapeHome() {
     } catch (err) {
 
         ////////////////////////////////////////////////////////////////
-        console.error("Error in scrapeCategory:", err); // for TESTING//
+        console.error("Error in scrapeHome:", err); // for TESTING//
         ////////////////////////////////////////////////////////////////
   
           if (err instanceof AxiosError) {

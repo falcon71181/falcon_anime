@@ -30,7 +30,7 @@ export const extractAnimes = ($, selectors) => {
     } catch (err) {
 
         ////////////////////////////////////////////////////////////////
-        console.error("Error in scraping ANIME Details :", err); // for TESTING//
+        console.error("Error in extractAnimes :", err); // for TESTING//
         ////////////////////////////////////////////////////////////////
   
           if (err instanceof AxiosError) {
@@ -72,7 +72,7 @@ export const extractTOP10ANIMES = ($, periodType) => {
     } catch (err) {
 
         ////////////////////////////////////////////////////////////////
-        console.error("Error in scraping ANIME Details :", err); // for TESTING//
+        console.error("Error in extractTOP10ANIMES :", err); // for TESTING//
         ////////////////////////////////////////////////////////////////
   
           if (err instanceof AxiosError) {
@@ -105,7 +105,7 @@ export const extractTrendingAnime = ($, selectors) => {
     } catch (err) {
 
         ////////////////////////////////////////////////////////////////
-        console.error("Error in scraping ANIME Details :", err); // for TESTING//
+        console.error("Error in extractTrendingAnime :", err); // for TESTING//
         ////////////////////////////////////////////////////////////////
   
           if (err instanceof AxiosError) {
@@ -138,7 +138,7 @@ export const extractTopAiringAnimes = ($, selectors) => {
     } catch (err) {
 
         ////////////////////////////////////////////////////////////////
-        console.error("Error in scraping ANIME Details :", err); // for TESTING//
+        console.error("Error in extractTopAiringAnimes :", err); // for TESTING//
         ////////////////////////////////////////////////////////////////
   
           if (err instanceof AxiosError) {
