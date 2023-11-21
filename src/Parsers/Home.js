@@ -34,6 +34,7 @@ export async function scrapeHome() {
         const $ = load(mainPage.data);
         const trendingAnimeSelectors = "#anime-trending #trending-home .swiper-wrapper .swiper-slide";
         const top10Selectors = '#main-sidebar .block_area-realtime [id^="top-viewed-"]';
+        const topAiringSelectors = "#anime-featured .row div:nth-of-type(1) .anif-block-ul ul li";
 
         $(trendingAnimeSelectors).each((index, element) => {
             const animeID = $(element).find(".item .film-poster")?.attr("href")?.slice(1) || null;
@@ -61,6 +62,20 @@ export async function scrapeHome() {
           if (periodType === "month") {
             res.top10Animes.month = extractTOP10ANIMES($, periodType);
           }
+        })
+
+        $(topAiringSelectors).each((index, element) => {
+          const animeID = $(element).find(".film-detail .film-name .dynamic-name")?.attr("href")?.slice(1)?.trim() || null;
+          const animeNAME = $(element).find(".film-detail .film-name .dynamic-name")?.text()?.trim() ?? "UNKNOWN ANIME";
+          const animeIMG = $(element).find(".film-poster a .film-poster-img")?.attr("data-src")?.trim();
+
+          res.topAiringAnimes.push({
+            sno: index,
+            id: animeID,
+            name: animeNAME,
+            img: animeIMG
+          })
+
         })
 
         return res;
