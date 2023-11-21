@@ -5,8 +5,9 @@ import {
     getGenre
 } from '../Controllers/Export.js';
 import {
-    validateCategory
-} from '../Middleware/validateCategory.js';
+    validateCategory,
+    validateGenre
+} from '../Middleware/Export.js';
 
 const router = Router()
 
@@ -25,6 +26,6 @@ router.get("/home", getHome);
 router.get("/:category", validateCategory, getCategory);
 
 //  /anime/genre/:genre?page=${page}
-router.get("/genre/:genre", getGenre)
+router.get("/genre/:genre", validateGenre, getGenre)
 
 export default router;
