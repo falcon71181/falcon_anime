@@ -41,6 +41,7 @@ export async function scrapeHome() {
             const animeIMG = $(element).find(".item .film-poster .film-poster-img")?.attr("data-src")?.trim();
 
             res.trendingAnimes.push({
+                sno: index,
                 id: animeID,
                 name: animeNAME,
                 img: animeIMG
