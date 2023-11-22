@@ -10,11 +10,15 @@ import {
 import {
    extractMostPopularAnimes,
    extractAboutInfo,
-   extractSeasonsInfo
+   extractAboutGenre,
+   extractSeasonsInfo,
+   extractExtraAboutInfo
  } from "../Utils/extractANIME.js";
 export async function scrapeAbout(id) {
     const res = {
         info: [],
+        moreinfo: [],
+        genre: [],
         seasons: [],
         mostPopularAnimes: [],
     }
@@ -29,11 +33,15 @@ export async function scrapeAbout(id) {
 
     const $ = load(mainPage.data);
     const selectors = "#ani_detail .container .anis-content";
+    const extraInfoSelector = `${selectors} .anisc-info .item-title`;
+    const animeGenreSelector = `${selectors} .anisc-info .item-list a`;
     const seasonsSelectors = ".os-list a.os-item";
     const mostPopularSelectors = "#main-sidebar .block_area.block_area_sidebar.block_area-realtime:nth-of-type(1) .anif-block-ul ul li";
 
     try {
         res.info = extractAboutInfo($, selectors);
+        res.moreinfo = extractExtraAboutInfo($, extraInfoSelector);
+        res.genre = extractAboutGenre($, animeGenreSelector);
         res.seasons = extractSeasonsInfo($, seasonsSelectors);
         res.mostPopularAnimes = extractMostPopularAnimes($, mostPopularSelectors);
 

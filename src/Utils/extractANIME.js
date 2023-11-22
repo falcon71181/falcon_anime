@@ -312,6 +312,61 @@ export const extractAboutInfo = ($, selectors) => {
 }
 }
 
+export const extractExtraAboutInfo = ($, selectors) => {
+  try {
+    const moreinfo = [];
+
+    $(selectors).each((index, element) => {
+      const animeKEY = $(element).find(".item-head")?.text()?.trim() || null;
+      const animeVALUE = $(element).find(".name")?.text()?.trim() ?? "UNKNOWN";
+
+      moreinfo.push({
+         [animeKEY]: animeVALUE
+      });
+    })
+    return moreinfo;
+  } catch (err) {
+
+    ///////////////////////////////////////////////////////////////////
+    console.error("Error in extractExtraAboutInfo :", err); // for TESTING//
+    ///////////////////////////////////////////////////////////////////
+
+      if (err instanceof AxiosError) {
+          throw createHttpError(
+            err?.response?.status || 500,
+            err?.response?.statusText || "Something went wrong"
+          )
+        }
+        throw createHttpError.InternalServerError(err?.message);
+}
+}
+
+export const extractAboutGenre = ($, selectors) => {
+  try {
+    const genre = [];
+
+    $(selectors).each((index, element) => {
+      const genreNAME = $(element).text()?.trim() ?? "UNKNOWN";
+
+      genre.push(genreNAME);
+    })
+    return genre;
+  } catch (err) {
+
+    ///////////////////////////////////////////////////////////////////
+    console.error("Error in extractAboutGenre :", err); // for TESTING//
+    ///////////////////////////////////////////////////////////////////
+
+      if (err instanceof AxiosError) {
+          throw createHttpError(
+            err?.response?.status || 500,
+            err?.response?.statusText || "Something went wrong"
+          )
+        }
+        throw createHttpError.InternalServerError(err?.message);
+}
+}
+
 export const extractSeasonsInfo = ($, selectors) => {
   try {
     const seasons = [];
