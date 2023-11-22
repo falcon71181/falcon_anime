@@ -7,7 +7,7 @@ const NavBar = () => {
   const pathname = usePathname();
   return (
     <div className="bg-black text-white font-heading h-16 w-[100vw] fixed flex justify-between items-center">
-      <Link href="/">
+      <Link href="/home">
         <div className="ml-32 mr-32 font-bold uppercase text-2xl text-saffron">
           F x Ani-Watch
         </div>
@@ -20,7 +20,7 @@ const NavBar = () => {
           <Link className={`${pathname === '/movie' ? 'text-grny hover:text-grny' : 'text-stone-300 hover:text-saffron'}`} href="/movie">Movies</Link>
         </li>
         <li>
-          <Link className={`${pathname === '/Genres' ? 'text-grny hover:text-grny' : 'text-stone-300 hover:text-saffron'}`} href="/Genres">Genres</Link>
+          <Link className={`${pathname === '/genres' ? 'text-grny hover:text-grny' : 'text-stone-300 hover:text-saffron'}`} href="/genres">Genres</Link>
         </li>
         <li>
           <Link className={`${pathname === '/whoami' ? 'text-grny hover:text-grny' : 'text-stone-300 hover:text-saffron'}`} href="/whoami">WhoAmI</Link>
