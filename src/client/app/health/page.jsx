@@ -28,7 +28,7 @@ const Health = () => {
   }, []);
 
   return (
-    <div>
+    <div className='pt-24'>
       <h1 className='text-amber-100 text-4xl flex items-center justify-center'>System Status</h1>
       {apiData && (
         <div>
