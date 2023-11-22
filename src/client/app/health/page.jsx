@@ -29,7 +29,6 @@ const Health = () => {
 
   return (
     <div className="pt-24">
-      {apiData && (
         <div className="flex justify-center h-screen">
           <div className="bg-black rounded-tl-12 rounded-tr-12 rounded-bl-4 rounded-br-4 w-[50%]">
             <div className="font-bold p-5 text-amber-100 text-4xl flex justify-center">
@@ -43,6 +42,7 @@ const Health = () => {
                 </div>
               </div>
               <div className="w-80 text-center text-xl">
+              {apiData && (
                 <div className="p-3 m-3">
                   <div
                     className={`${
@@ -63,11 +63,11 @@ const Health = () => {
                     {checkHealth(apiData.aniwatch.toString())}
                   </div>
                 </div>
+              )}
               </div>
             </div>
           </div>
         </div>
-      )}
     </div>
   );
 };
