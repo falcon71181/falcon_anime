@@ -25,3 +25,20 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.social_btn{
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  margin: 10px;
+  &:hover {
+    @apply bg-gray-900;
+    .socials_img {
+      @apply border-grny transition-all duration-500;
+    }
+    .social_name {
+      @apply text-saffron;
+    }
+  }
+}
