@@ -7,24 +7,14 @@ import {
     URLs,
     ACCEPT_HEADER
 } from '../Utils/constantDATA.js';
-
+import {
+   extractMostPopularAnimes,
+   extractAboutInfo
+ } from "../Utils/extractANIME.js";
 export async function scrapeAbout(id) {
     const res = {
-        info: {
-            sno: null,
-            id: null,
-            name: null,
-            img: null,
-            description: null,
-            rating: null,
-            quality: null,
-            sub: null,
-            dub: null,
-            duration: null,
-            seasons: [],
-            mostPopularAnimes: [],
-            relatedAnimes: [],
-        }
+        info: [],
+        mostPopularAnimes: [],
     }
     const aboutURL = new URL(id, URLs.BASE);
     const mainPage = await axios.get(aboutURL, {
@@ -38,11 +28,12 @@ export async function scrapeAbout(id) {
     const $ = load(mainPage.data);
     const selectors = "#ani_detail .container .anis-content";
     const seasonsSelectors = "#main-content .os-list a.os-item";
-    const mostPopularSelectors = "#main-sidebar .block_area.block_area_sidebar.block_area-realtime:nth-of-type(2) .anif-block-ul ul li";
-    const relatedSelectors = "#main-sidebar .block_area.block_area_sidebar.block_area-realtime:nth-of-type(1) .anif-block-ul ul li";
+    const mostPopularSelectors = "#main-sidebar .block_area.block_area_sidebar.block_area-realtime:nth-of-type(1) .anif-block-ul ul li";
 
     try {
-        
+        res.info = extractAboutInfo($, selectors);
+        res.mostPopularAnimes = extractMostPopularAnimes($, mostPopularSelectors);
+
         return res;
     } catch (err) {
 
