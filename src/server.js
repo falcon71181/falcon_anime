@@ -26,7 +26,7 @@ app.get("/health", (req, res) => {
   });
 });
 
-app.use("/anime", router);
+app.use("/", router);
 
 app.listen(BACKEND_PORT, () => {
     console.log(`⚔️  API @ ON PORT : ${BACKEND_PORT} @ STARTED  ⚔️`);
