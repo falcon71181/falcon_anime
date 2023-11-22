@@ -71,9 +71,9 @@ export const extractTOP10ANIMES = ($, periodType) => {
         return animes;
     } catch (err) {
 
-        ////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////
         console.error("Error in extractTOP10ANIMES :", err); // for TESTING//
-        ////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////
   
           if (err instanceof AxiosError) {
               throw createHttpError(
@@ -104,9 +104,9 @@ export const extractTrendingAnime = ($, selectors) => {
         return animes;
     } catch (err) {
 
-        ////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////
         console.error("Error in extractTrendingAnime :", err); // for TESTING//
-        ////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////
   
           if (err instanceof AxiosError) {
               throw createHttpError(
@@ -137,9 +137,9 @@ export const extractTopAiringAnimes = ($, selectors) => {
         return animes;
     } catch (err) {
 
-        ////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////
         console.error("Error in extractTopAiringAnimes :", err); // for TESTING//
-        ////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////
   
           if (err instanceof AxiosError) {
               throw createHttpError(
@@ -188,9 +188,50 @@ export const extractSpotLightAnime = ($, selectors) => {
     return animes;
   } catch (err) {
 
-    ////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////
     console.error("Error in extractSpotLightAnime :", err); // for TESTING//
-    ////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////
+
+      if (err instanceof AxiosError) {
+          throw createHttpError(
+            err?.response?.status || 500,
+            err?.response?.statusText || "Something went wrong"
+          )
+        }
+        throw createHttpError.InternalServerError(err?.message);
+}
+}
+
+export const extractMostPopularAnimes = ($, selectors) => {
+  try {
+    const animes = [];
+
+    $(selectors).each((index, element) => {
+      
+      const animeID = $(element).find(".film-detail .dynamic-name")?.attr("href")?.slice(1).trim() || null;
+      const animeNAME = $(element).find(".film-detail .dynamic-name")?.text()?.trim() ?? "UNKNOWN ANIME";
+      const animeIMG = $(element).find(".film-poster .film-poster-img")?.attr("data-src")?.trim() || null;
+      const epSUB = $(selectors).find(".fd-infor .tick .tick-sub")?.text()?.trim() || null ;
+      const epDUB = $(selectors).find(".fd-infor .tick .tick-dub")?.text()?.trim() || null ;
+      const animeTYPE = $(selectors)?.find(".fd-infor .tick")?.text()?.trim()?.replace(/[\s\n]+/g, " ")?.split(" ")?.pop() || null;
+
+      animes.push({
+        sno: index,
+        id: animeID,
+        name: animeNAME,
+        type: animeTYPE,
+        img: animeIMG,
+        sub: epSUB,
+        dub: epDUB
+      })
+    })
+    return animes;
+
+  } catch (err) {
+
+    ///////////////////////////////////////////////////////////////////////////
+    console.error("Error in extractMostPopularAnimes :", err); // for TESTING//
+    ///////////////////////////////////////////////////////////////////////////
 
       if (err instanceof AxiosError) {
           throw createHttpError(
@@ -212,9 +253,9 @@ export const extractGenreList = ($, selectors) => {
     return genres;
   } catch (err) {
 
-    ////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////
     console.error("Error in extractGenreList :", err); // for TESTING//
-    ////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////
 
       if (err instanceof AxiosError) {
           throw createHttpError(
