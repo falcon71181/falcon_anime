@@ -210,10 +210,13 @@ export const extractRelatedAnimes = ($, selectors) => {
       const animeID = $(element).find(".film-detail .dynamic-name")?.attr("href")?.slice(1).trim() || null;
       const animeNAME = $(element).find(".film-detail .dynamic-name")?.text()?.trim() ?? "UNKNOWN ANIME";
       const animeIMG = $(element).find(".film-poster .film-poster-img")?.attr("data-src")?.trim() || null;
-      const epSUB = $(selectors).find(".fd-infor .tick .tick-sub")?.text()?.trim() || null ;
-      const epDUB = $(selectors).find(".fd-infor .tick .tick-dub")?.text()?.trim() || null ;
-      const eps = $(selectors).find(".fd-infor .tick .tick-eps")?.text()?.trim() || null ;
+      // const epSUB = $(selectors).find(".film-details .fd-infor .tick .tick-item.tick-sub")?.text()?.trim() || null ;
+      // const epDUB = $(selectors).find(".fd-infor .tick .tick-item.tick-dub")?.text()?.trim() || null ;
+      // const eps = $(selectors).find(".fd-infor .tick .tick-item.tick-eps")?.text()?.trim() || null ;
       const animeTYPE = $(selectors)?.find(".fd-infor .tick")?.text()?.trim()?.replace(/[\s\n]+/g, " ")?.split(" ")?.pop() || null;
+
+      // console.log(epSUB);
+      // console.log(epDUB);
 
       animes.push({
         sno: index,
@@ -221,9 +224,9 @@ export const extractRelatedAnimes = ($, selectors) => {
         name: animeNAME,
         category: animeTYPE,
         img: animeIMG,
-        sub: epSUB,
-        dub: epDUB,
-        eps: eps
+        // sub: epSUB,
+        // dub: epDUB,
+        // eps: eps
       })
     })
     return animes;
