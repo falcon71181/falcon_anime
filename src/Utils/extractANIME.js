@@ -299,7 +299,44 @@ export const extractAboutInfo = ($, selectors) => {
   } catch (err) {
 
     ///////////////////////////////////////////////////////////////////
-    console.error("Error in extractGenreList :", err); // for TESTING//
+    console.error("Error in extractAboutInfo :", err); // for TESTING//
+    ///////////////////////////////////////////////////////////////////
+
+      if (err instanceof AxiosError) {
+          throw createHttpError(
+            err?.response?.status || 500,
+            err?.response?.statusText || "Something went wrong"
+          )
+        }
+        throw createHttpError.InternalServerError(err?.message);
+}
+}
+
+export const extractSeasonsInfo = ($, selectors) => {
+  try {
+    const seasons = [];
+
+    $(selectors).each((index, element) => {
+
+      const animeID = $(element)?.attr("href")?.slice(1)?.trim() || null;
+      const animeNAME = $(element)?.attr("title")?.trim() ?? "UNKNOWN ANIME";
+      const animeTITLE = $(element)?.find(".title")?.text()?.trim();
+      const animeIMG = $(element)?.find(".season-poster")?.attr("style")?.split(" ")?.pop()?.split("(")?.pop()?.split(")")[0] || null
+
+      seasons.push({
+        sno: index,
+        id: animeID,
+        name: animeNAME,
+        title: animeTITLE,
+        img: animeIMG,
+        isCurrent: $(element)?.hasClass("active"),
+      });
+    });
+    return seasons;
+  } catch (err) {
+
+    ///////////////////////////////////////////////////////////////////
+    console.error("Error in extractSeasonsInfo :", err); // for TESTING//
     ///////////////////////////////////////////////////////////////////
 
       if (err instanceof AxiosError) {

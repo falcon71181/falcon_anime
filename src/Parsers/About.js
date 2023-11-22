@@ -9,11 +9,13 @@ import {
 } from '../Utils/constantDATA.js';
 import {
    extractMostPopularAnimes,
-   extractAboutInfo
+   extractAboutInfo,
+   extractSeasonsInfo
  } from "../Utils/extractANIME.js";
 export async function scrapeAbout(id) {
     const res = {
         info: [],
+        seasons: [],
         mostPopularAnimes: [],
     }
     const aboutURL = new URL(id, URLs.BASE);
@@ -27,11 +29,12 @@ export async function scrapeAbout(id) {
 
     const $ = load(mainPage.data);
     const selectors = "#ani_detail .container .anis-content";
-    const seasonsSelectors = "#main-content .os-list a.os-item";
+    const seasonsSelectors = ".os-list a.os-item";
     const mostPopularSelectors = "#main-sidebar .block_area.block_area_sidebar.block_area-realtime:nth-of-type(1) .anif-block-ul ul li";
 
     try {
         res.info = extractAboutInfo($, selectors);
+        res.seasons = extractSeasonsInfo($, seasonsSelectors);
         res.mostPopularAnimes = extractMostPopularAnimes($, mostPopularSelectors);
 
         return res;
