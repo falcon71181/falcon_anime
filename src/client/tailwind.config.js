@@ -7,6 +7,15 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        'saffron': '#fa4103',
+        'grny': '#8cff00',
+      },
+      fontFamily: {
+        heading: ['Monaco', 'Bitstream Vera Sans Mono', 'Lucida Console'],
+        content_font: ['Roboto Condensed', 'sans-serif'],
+        sub_title: ['Roboto Mono', 'monospace'],
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
