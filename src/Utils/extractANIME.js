@@ -201,7 +201,7 @@ export const extractSpotLightAnime = ($, selectors) => {
 }
 }
 
-export const extractMostPopularAnimes = ($, selectors) => {
+export const extractRelatedAnimes = ($, selectors) => {
   try {
     const animes = [];
 
@@ -212,16 +212,18 @@ export const extractMostPopularAnimes = ($, selectors) => {
       const animeIMG = $(element).find(".film-poster .film-poster-img")?.attr("data-src")?.trim() || null;
       const epSUB = $(selectors).find(".fd-infor .tick .tick-sub")?.text()?.trim() || null ;
       const epDUB = $(selectors).find(".fd-infor .tick .tick-dub")?.text()?.trim() || null ;
+      const eps = $(selectors).find(".fd-infor .tick .tick-eps")?.text()?.trim() || null ;
       const animeTYPE = $(selectors)?.find(".fd-infor .tick")?.text()?.trim()?.replace(/[\s\n]+/g, " ")?.split(" ")?.pop() || null;
 
       animes.push({
         sno: index,
         id: animeID,
         name: animeNAME,
-        type: animeTYPE,
+        category: animeTYPE,
         img: animeIMG,
         sub: epSUB,
-        dub: epDUB
+        dub: epDUB,
+        eps: eps
       })
     })
     return animes;

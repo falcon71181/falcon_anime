@@ -8,7 +8,7 @@ import {
     ACCEPT_HEADER
 } from '../Utils/constantDATA.js';
 import {
-   extractMostPopularAnimes,
+   extractRelatedAnimes,
    extractAboutInfo,
    extractAboutGenre,
    extractSeasonsInfo,
@@ -20,6 +20,7 @@ export async function scrapeAbout(id) {
         moreinfo: [],
         genre: [],
         seasons: [],
+        relatedAnimes: [],
         mostPopularAnimes: [],
     }
     const aboutURL = new URL(id, URLs.BASE);
@@ -36,14 +37,14 @@ export async function scrapeAbout(id) {
     const extraInfoSelector = `${selectors} .anisc-info .item-title`;
     const animeGenreSelector = `${selectors} .anisc-info .item-list a`;
     const seasonsSelectors = ".os-list a.os-item";
-    const mostPopularSelectors = "#main-sidebar .block_area.block_area_sidebar.block_area-realtime:nth-of-type(1) .anif-block-ul ul li";
+    const relatedAnimesSelectors = "#main-sidebar .block_area.block_area_sidebar.block_area-realtime:nth-of-type(1) .anif-block-ul ul li";
 
     try {
         res.info = extractAboutInfo($, selectors);
         res.moreinfo = extractExtraAboutInfo($, extraInfoSelector);
         res.genre = extractAboutGenre($, animeGenreSelector);
         res.seasons = extractSeasonsInfo($, seasonsSelectors);
-        res.mostPopularAnimes = extractMostPopularAnimes($, mostPopularSelectors);
+        res.relatedAnimes = extractRelatedAnimes($, relatedAnimesSelectors);
 
         return res;
     } catch (err) {
