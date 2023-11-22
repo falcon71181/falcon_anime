@@ -1,16 +1,19 @@
 "use client";
-import React, { useState } from "react";
+
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const whoami = () => {
-  function handleClick(contenta) {
-    setModalOpen(true);
-    setModalComponent(content);
+const WhoAmI = () => {
+  const handleClick = (content) => {
+    // TODO: Complete rest
+    // setModalOpen(true);
+    // setModalComponent(content);
   }
+
   return (
     <div className="flex flex-col items-center justify-center flex-1 h-[100%] pt-10 text-white">
-      <div className="flex flex-col items-center justify-center flex-1 h-[100%]">
+      <div className="mt-20 flex flex-col items-center justify-center flex-1 h-[100%]">
         <div className="relative p-8">
           <div className="relative p-10 border-2 border-dashed rounded-full group animate-rotate-reverse border-spacing-4 border-gray-400/50">
             <button
@@ -221,4 +224,4 @@ const whoami = () => {
   );
 };
 
-export default whoami;
+export default WhoAmI;

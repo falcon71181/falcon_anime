@@ -1,4 +1,4 @@
-export const genreList = [
+const genreList = [
     "Action",
     "Adventure",
     "Cars",
@@ -41,3 +41,5 @@ export const genreList = [
     "Thriller",
     "Vampire"
 ]
+
+export default genreList;
