@@ -42,8 +42,8 @@ const Health = () => {
                 </div>
               </div>
               <div className="w-80 text-center text-xl">
-              {apiData && (
                 <div className="p-3 m-3">
+                  {apiData && (
                   <div
                     className={`${
                       checkHealth(apiData.API.toString()) === "200 OK"
@@ -52,7 +52,8 @@ const Health = () => {
                     }`}
                   >
                     {checkHealth(apiData.API.toString())}
-                  </div>
+                  </div>)}
+                  {apiData && (
                   <div
                     className={`${
                       checkHealth(apiData.aniwatch.toString()) === "200 OK"
@@ -61,9 +62,8 @@ const Health = () => {
                     }`}
                   >
                     {checkHealth(apiData.aniwatch.toString())}
-                  </div>
+                  </div>)}
                 </div>
-              )}
               </div>
             </div>
           </div>
