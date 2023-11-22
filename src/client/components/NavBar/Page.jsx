@@ -20,7 +20,7 @@ const NavBar = () => {
           <Link className={`${pathname === '/movie' ? 'text-grny hover:text-grny' : 'text-stone-300 hover:text-saffron'}`} href="/movie">Movies</Link>
         </li>
         <li>
-          <Link className={`${pathname === '/genres' ? 'text-grny hover:text-grny' : 'text-stone-300 hover:text-saffron'}`} href="/genres">Genres</Link>
+          <Link className={`${pathname === '/genre' ? 'text-grny hover:text-grny' : 'text-stone-300 hover:text-saffron'}`} href="/genre">Genres</Link>
         </li>
         <li>
           <Link className={`${pathname === '/whoami' ? 'text-grny hover:text-grny' : 'text-stone-300 hover:text-saffron'}`} href="/whoami">WhoAmI</Link>
