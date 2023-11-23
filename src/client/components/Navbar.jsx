@@ -7,12 +7,12 @@ const Navbar = () => {
     const pathname = usePathname();
 
     return (
-        <div className='absolute w-full flex justify-between items-center px-3 py-5'>
+        <div className='absolute w-full flex justify-between items-center px-3 py-6'>
             <Link href='/'>
                 <h1 className='uppercase font-bold text-2xl text-saffron'>F x Ani-Watch</h1>
             </Link>
 
-            <ul className='flex items-center gap-10'>
+            <ul className='flex items-center gap-7'>
                 <li>
                     <Link
                         href='/'
