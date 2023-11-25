@@ -3,7 +3,8 @@ import {
     getHome,
     getCategory,
     getGenre,
-    getAboutInfo
+    getAboutInfo,
+    getSearch
 } from '../Controllers/Export.js';
 import {
     validateCategory,
@@ -12,20 +13,23 @@ import {
 
 const router = Router()
 
+// /anime/search?keyword=${query}&page=${page}
+router.get("/anime/search", getSearch);
 
-//  /
-router.get("/", (_, res) => res.redirect("/"));
-
-//  /home
-router.get("/home", getHome);
-
-//  /anime/:id
+// /anime/:id
 router.get("/anime/:id", getAboutInfo);
 
-//  /:category?page=${page}
+// /:category?page=${page}
 router.get("/:category", validateCategory, getCategory);
 
-//  /genre/:genre?page=${page}
+// /genre/:genre?page=${page}
 router.get("/genre/:genre", validateGenre, getGenre)
+
+// /
+router.get("/", (_, res) => res.redirect("/"));
+
+// /home
+router.get("/home", getHome);
+
 
 export default router;
