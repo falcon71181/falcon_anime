@@ -25,4 +25,21 @@ const genGenreId = (genreList) => {
     return genreIds;
 }
 
-export { getGenreData, genGenreId };
+const getMOvieData = async () => {
+    try {
+        const res = await fetch(`http://localhost:3001/movie`);
+        const data = await res.json();
+
+        if(res.ok) return data;
+
+        if (!res.ok) {
+            console.log(res.status);
+            throw new Error(`Some error occured`);
+        }        
+    } catch (error) {
+        console.error(error);
+        throw new Error(error);
+    }
+}
+
+export { getGenreData, genGenreId, getMOvieData };
