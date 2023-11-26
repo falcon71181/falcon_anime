@@ -19,6 +19,9 @@ router.get("/anime/search", getSearch);
 // /anime/:id
 router.get("/anime/:id", getAboutInfo);
 
+// /home
+router.get("/home", getHome);
+
 // /:category?page=${page}
 router.get("/:category", validateCategory, getCategory);
 
@@ -27,9 +30,5 @@ router.get("/genre/:genre", validateGenre, getGenre)
 
 // /
 router.get("/", (_, res) => res.redirect("/"));
-
-// /home
-router.get("/home", getHome);
-
 
 export default router;
