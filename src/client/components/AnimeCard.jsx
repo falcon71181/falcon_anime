@@ -11,7 +11,7 @@ const AnimeCard = ({ anime }) => {
         <Link
             key={anime.id}
             href={`${CLIENT_BASE_URL}/anime/${anime.id}`}
-            className='group transition-colors rounded-lg bg-gradient-to-b from-stone-900 via-transparent to-stone-900 hover:bg-stone-700'
+            className='group transition-colors rounded-lg bg-gradient-to-b from-stone-900 via-transparent to-stone-900 hover:bg-stone-700 hover:shadow-lg hover:shadow-grny transition-shadow'
         >
             <div className='rounded-lg overflow-hidden'>
                 <Image
