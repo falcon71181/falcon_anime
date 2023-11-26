@@ -1,9 +1,9 @@
 import AnimeCard from "@/components/AnimeCard";
-import { getMOvieData } from "@/lib/utils";
+import { getMovieData } from "@/lib/utils";
 
 const Movie = async () => {
 
-    const movieData = await getMOvieData();
+    const movieData = await getMovieData();
 
     return (
         <div className='min-h-screen pt-28 px-10'>
