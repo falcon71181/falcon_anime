@@ -37,7 +37,6 @@ async function scrapeSearch(query, page) {
             }
           );
         const $ = load(mainPage.data);
-        console.log(`${URLs.BASE}?keyword=${query}&page=${page}`);
         
         const selectors = "#main-content .tab-content .film_list-wrap .flw-item";
 
