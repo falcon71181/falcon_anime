@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import SearchBar from "./SearchBar";
 
 const Navbar = () => {
     const pathname = usePathname();
@@ -13,6 +14,7 @@ const Navbar = () => {
             </Link>
 
             <ul className='flex items-center gap-7'>
+                <li><SearchBar></SearchBar></li>
                 <li>
                     <Link
                         href='/'
