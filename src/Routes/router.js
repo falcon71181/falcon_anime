@@ -10,8 +10,12 @@ import {
     validateCategory,
     validateGenre
 } from '../Middleware/Export.js';
+import { registration } from "../Utils/registerUSER.js";
 
 const router = Router()
+
+// /api/register
+router.post("/api/register", registration);
 
 // /anime/search?keyword=${query}&page=${page}
 router.get("/anime/search", getSearch);
