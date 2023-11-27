@@ -59,6 +59,20 @@ const Navbar = () => {
                         }
                     >WhoAmI</Link>
                 </li>
+                <li>
+                <Link
+                href='/login'
+                ><button
+                        className={`${pathname === '/login'
+                        ? 'border-2 border-saffron'
+                        : 'bg-teal-900 border-none'
+                        } 
+                        outline-none inline-flex items-center justify-between min-w-200 rounded-md shadow-md box-border px-3 py-3 text-white text-xs font-semibold tracking-wider uppercase overflow-hidden cursor-pointer hover:opacity-95 hover:text-stone-200`
+                    }
+                ><i className="login_animation text-bold"></i>Login / Register<i className="login_animation"></i>
+              </button>
+              </Link>
+                </li>
             </ul>
         </div>
     )

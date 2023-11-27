@@ -25,7 +25,7 @@ const Home = async () => {
   const homeData = await getHomeData();
 
   return (
-    <div className="min-h-screen pt-24 px-10 text-center">
+    <div className="min-h-screen pt-24 px-10 text-left">
       <Swiper
         className="relative flex w-full h-[500px] overflow-hidden z-10 md:h-570 lg:h-500 xl:h-350"
         slidesPerView={1}
@@ -47,7 +47,7 @@ const Home = async () => {
               <img src={anime.img} className="w-full h-full absolute"></img>
             </div>
             <div className="z-1 w-600 h-full absolute flex flex-col justify-end text-yellow-400 left-8 bottom-8 pb-12 md:w-1/2 lg:w-full lg:pr-100 md:left-10 md:pr-10">
-              <div className="text-yellow-400 text-lg font-bold font-ubuntu uppercase md:text-1 hidden md:inline md:text-xs">
+              <div className="text-yellow-400 text-lg mb-10 font-bold font-ubuntu uppercase md:text-1 hidden md:inline md:text-xs">
                 <p>#{anime.sno + 1} Spotlight</p>
               </div>
               <h1 className="font-ubuntu text-white tracking-wide mb-20 text-5xl md:text-3xl md:leading-tight md:line-clamp-2 lg:line-clamp-2 md:mb-5 md:text-2xl lg:text-2xl lg:mb-0 md:leading-5 lg:leading-5 md:tracking-tight md:mb-0 lg:mb-0">{anime.name}</h1>
