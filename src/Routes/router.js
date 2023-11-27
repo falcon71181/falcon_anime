@@ -11,11 +11,15 @@ import {
     validateGenre
 } from '../Middleware/Export.js';
 import { registration } from "../Utils/registerUSER.js";
+import { login } from "../Utils/loginUSER.js";
 
 const router = Router()
 
 // /api/register
 router.post("/api/register", registration);
+
+// /api/login
+router.post('/api/login', login);
 
 // /anime/search?keyword=${query}&page=${page}
 router.get("/anime/search", getSearch);
