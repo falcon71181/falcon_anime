@@ -43,8 +43,7 @@ const registration = async (req, res) => {
       newUser.password = hash;
       await newUser.save();
   
-      req.flash('success_msg', 'Registration Complete');
-      res.redirect('/health');
+      res.redirect(`${process.env.CLIENT}/health`);
     } catch (err) {
       console.error(err);
       res.status(500).send('Internal Server Error');

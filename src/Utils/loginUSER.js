@@ -2,8 +2,8 @@ import passport from "passport";
 
 const login = (req, res, next) => {
     passport.authenticate('local', {
-      successRedirect: '/',
-      failureRedirect: '/api/login',
+      successRedirect: `${process.env.CLIENT}/profile`,
+      failureRedirect: `${process.env.CLIENT}/login`,
       failureFlash: true
     })(req, res, next);
 }
