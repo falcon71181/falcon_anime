@@ -1,20 +1,58 @@
 'use client'
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import SearchBar from "./SearchBar";
+import React, { useState, useEffect } from 'react';
+
+const isSessionIDValid = async () => {
+  try {
+    const response = await fetch("http://localhost:3001/valid", {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        // Add any additional headers if needed
+      },
+      // Any other options...
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch user profile');
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching user profile:', error.message);
+    throw error;
+  }
+};
 
 const Navbar = () => {
-    const pathname = usePathname();
+  const pathname = usePathname();
+  const [isValidSession, setIsValidSession] = useState(false);
 
-    return (
-        <div className='absolute w-full flex justify-between items-center px-3 py-6'>
-            <Link href='/'>
-                <h1 className='uppercase font-bold text-2xl text-saffron'>F x Ani-Watch</h1>
-            </Link>
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await isSessionIDValid();
+        setIsValidSession(data.valid);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-            <ul className='flex items-center gap-7'>
-                <li><SearchBar></SearchBar></li>
+    fetchData();
+  }, []);
+
+  return (
+    <div className='absolute w-full flex justify-between items-center px-3 py-6'>
+      <Link href='/'>
+        <h1 className='uppercase font-bold text-2xl text-saffron'>F x Ani-Watch</h1>
+      </Link>
+
+      <ul className='flex items-center gap-7'>
+      <li><SearchBar></SearchBar></li>
                 <li>
                     <Link
                         href='/'
@@ -59,23 +97,28 @@ const Navbar = () => {
                         }
                     >WhoAmI</Link>
                 </li>
-                <li>
-                <Link
-                href='/login'
-                ><button
-                        className={`${pathname === '/login'
-                        ? 'border-2 border-saffron'
-                        : 'bg-teal-900 border-none'
-                        } 
-                        outline-none inline-flex items-center justify-between min-w-200 rounded-md shadow-md box-border px-3 py-3 text-white text-xs font-semibold tracking-wider uppercase overflow-hidden cursor-pointer hover:opacity-95 hover:text-stone-200`
-                    }
-                ><i className="login_animation text-bold"></i>Login / Register<i className="login_animation"></i>
+        {isValidSession ? (
+          // Display user's profile name if session is valid
+          <li className="text-stone-300">MyProfile</li>
+        ) : (
+          // Display "Login / Register" button if session is not valid
+          <li>
+            <Link href='/login'>
+              <button
+                className={`${pathname === '/login'
+                  ? 'border-2 border-saffron'
+                  : 'bg-teal-900 border-none'
+                  } 
+                        outline-none inline-flex items-center justify-between min-w-200 rounded-md shadow-md box-border px-3 py-3 text-white text-xs font-semibold tracking-wider uppercase overflow-hidden cursor-pointer hover:opacity-95 hover:text-stone-200`}
+              >
+                <i className="login_animation text-bold"></i>Login / Register<i className="login_animation"></i>
               </button>
-              </Link>
-                </li>
-            </ul>
-        </div>
-    )
-}
+            </Link>
+          </li>
+        )}
+      </ul>
+    </div>
+  );
+};
 
 export default Navbar;
