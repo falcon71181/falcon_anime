@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import Loading from '@/components/Loading';
 
 const fetchUserProfile = async () => {
     try {
-      const response = await fetch("http://localhost:3001/profile", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/profile`, {
         method: "GET",
         credentials: "include",
         headers: {
@@ -46,13 +47,15 @@ const fetchUserProfile = async () => {
     }, []);
   
     return (
-      <div className="min-h-screen pt-28 px-10">
+      <div>
         {loading ? (
-          <p className="text-5xl font-bold">Loading...</p>
+          <Loading />
         ) : (
           <>
+          <div className="min-h-screen pt-28 px-10">
             <h1 className="text-5xl font-bold">Welcome,</h1>
             {/* Render other profile information */}
+            </div>
           </>
         )}
       </div>
