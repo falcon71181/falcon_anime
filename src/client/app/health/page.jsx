@@ -4,12 +4,10 @@ import { checkHealth } from "./check";
 
 const Health = () => {
   const [apiData, setApiData] = useState(null);
-  const API = process.env.NEXT_PUBLIC_API;
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const health_url = `${API}/health`;
+        const health_url = "http://localhost:3001/health";
         const response = await fetch(health_url);
 
         if (response.ok) {

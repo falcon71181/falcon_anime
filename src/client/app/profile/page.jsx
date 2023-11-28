@@ -19,7 +19,6 @@ const fetchUserProfile = async () => {
       }
   
       const data = await response.json();
-      console.log(data);
       return data;
     } catch (error) {
       console.error('Error fetching user profile:', error.message);
@@ -37,7 +36,7 @@ const fetchUserProfile = async () => {
           const data = await fetchUserProfile();
         //   setProfileData(data);
         } catch (error) {
-          // Handle the error
+          console.log(error);
         } finally {
           setLoading(false);
         }
