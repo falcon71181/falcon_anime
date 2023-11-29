@@ -35,6 +35,9 @@ const MyProfile = () => {
     const fetchData = async () => {
       try {
         const data = await fetchUserProfile();
+        if (!data.valid === true) {
+          redirect('/login');
+        }
         //   setProfileData(data);
       } catch (error) {
         console.log(error);
@@ -73,7 +76,7 @@ const MyProfile = () => {
                 </div>
                 <div class="group-hover:p-3 transition-all duration-500 delay-200">
                   <h1 class="font-semibold text-whote text-4xl">User Name</h1>
-                  <p class="text-ston-300 text-sm">@user</p>
+                  <p class="pt-1 text-ston-300 text-sm group-hover:pt-3 transition-all duration-500 delay-200">@user</p>
                 </div>
               </div>
             </div>
