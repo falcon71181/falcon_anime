@@ -6,6 +6,7 @@ import React, { useState, useEffect } from "react";
 import { DownOutlined, SmileOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Dropdown, Space } from "antd";
 import { isSessionIDValid } from "@/lib/IsSessionIDValid";
+import { LogOut } from "@/lib/LogOut";
 
 const items = [
   {
@@ -13,6 +14,7 @@ const items = [
     danger: true,
     label: "Log Out",
     icon: <LogoutOutlined />,
+    onClick: LogOut
   },
 ];
 

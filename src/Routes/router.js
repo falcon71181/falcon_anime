@@ -15,7 +15,6 @@ import {
 import { registration } from "../Utils/registerUSER.js";
 import { login } from "../Utils/loginUSER.js";
 import { retrieveLoggedInUserData } from "../Parsers/UserData.js";
-import { logOut } from "../Utils/logOutUSER.js";
 
 const router = Router()
 

@@ -1,6 +1,5 @@
 const isSessionIDValid = async () => {
     try {
-        console.log('isSessionIDValid Working')
       const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/valid`, {
         method: "GET",
         credentials: "include",

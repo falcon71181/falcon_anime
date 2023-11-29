@@ -5,7 +5,7 @@ const retrieveLoggedInUserData = async (req, res) => {
       email: req.user.email,
       date: req.user.date,
     };
-  console.log(userProfileData);
+
     res.json(userProfileData);
   } catch (error) {
     console.error('Error retrieving user data:', error.message);
