@@ -3,30 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import SearchBar from "./SearchBar";
 import React, { useState, useEffect } from 'react';
-
-const isSessionIDValid = async () => {
-  try {
-    const response = await fetch("http://localhost:3001/valid", {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        // Add any additional headers if needed
-      },
-      // Any other options...
-    });
-
-    if (!response.ok) {
-      throw new Error('Failed to fetch user profile');
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error fetching user profile:', error.message);
-    throw error;
-  }
-};
+import { isSessionIDValid } from "@/lib/IsSessionIDValid";
 
 const Navbar = () => {
   const pathname = usePathname();
