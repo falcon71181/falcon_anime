@@ -14,8 +14,8 @@ import {
 } from '../Middleware/Export.js';
 import { registration } from "../Utils/registerUSER.js";
 import { login } from "../Utils/loginUSER.js";
-import { logOut } from "../Utils/logOutUSER.js";
 import { retrieveLoggedInUserData } from "../Parsers/UserData.js";
+import { logOut } from "../Utils/logOutUSER.js";
 
 const router = Router()
 
@@ -29,7 +29,12 @@ router.post("/api/register", registration);
 router.post("/api/login", login);
 
 //  /api/logout
-router.get("/api/logout", ensureAuthenticated, logOut);
+router.post('/api/logout', function(req, res, next){
+    req.logout(function(err) {
+      if (err) { return next(err); }
+      res.status(200).json({sessionEnd: true});
+    });
+  });
 
 //  /profile
 router.get("/profile", ensureAuthenticated, retrieveLoggedInUserData);
