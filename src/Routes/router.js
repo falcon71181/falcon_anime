@@ -14,6 +14,7 @@ import {
 } from '../Middleware/Export.js';
 import { registration } from "../Utils/registerUSER.js";
 import { login } from "../Utils/loginUSER.js";
+import { logOut } from "../Utils/logOutUSER.js";
 
 const router = Router()
 
@@ -24,31 +25,34 @@ function test(req, res){
   res.status(200).json(data);
 }
 
-// /valid
+//  /valid
 router.get("/valid", validAuthentication);
 
-// /api/register
+//  /api/register
 router.post("/api/register", registration);
 
-// /api/login
-router.post('/api/login', login);
+//  /api/login
+router.post("/api/login", login);
 
-// /profile
-router.get('/profile', ensureAuthenticated, test);
+//  /api/logout
+router.get("/api/logout", ensureAuthenticated, logOut);
 
-// /anime/search?keyword=${query}&page=${page}
+//  /profile
+router.get("/profile", ensureAuthenticated, test);
+
+//  /anime/search?keyword=${query}&page=${page}
 router.get("/anime/search", getSearch);
 
-// /anime/:id
+//  /anime/:id
 router.get("/anime/:id", getAboutInfo);
 
-// /home
+//  /home
 router.get("/home", getHome);
 
-// /:category?page=${page}
+//  /:category?page=${page}
 router.get("/:category", validateCategory, getCategory);
 
-// /genre/:genre?page=${page}
+//  /genre/:genre?page=${page}
 router.get("/genre/:genre", validateGenre, getGenre)
 
 export default router;
