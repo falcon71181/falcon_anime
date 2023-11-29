@@ -15,15 +15,9 @@ import {
 import { registration } from "../Utils/registerUSER.js";
 import { login } from "../Utils/loginUSER.js";
 import { logOut } from "../Utils/logOutUSER.js";
+import { retrieveLoggedInUserData } from "../Parsers/UserData.js";
 
 const router = Router()
-
-function test(req, res){
-  const data = {
-    user:'',
-  }
-  res.status(200).json(data);
-}
 
 //  /valid
 router.get("/valid", validAuthentication);
@@ -38,7 +32,7 @@ router.post("/api/login", login);
 router.get("/api/logout", ensureAuthenticated, logOut);
 
 //  /profile
-router.get("/profile", ensureAuthenticated, test);
+router.get("/profile", ensureAuthenticated, retrieveLoggedInUserData);
 
 //  /anime/search?keyword=${query}&page=${page}
 router.get("/anime/search", getSearch);

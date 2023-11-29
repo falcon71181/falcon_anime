@@ -25,8 +25,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
     secret: process.env.SECRET || 'secret',
-    resave: true,
-    saveUninitialized: true
+    resave: false,
+    saveUninitialized: false
   })
 );
 
@@ -47,7 +47,7 @@ app.use((req, res, next) => {
 });
 
 const corsOptions = {
-  origin: process.env.CLIENT,
+  origin: [process.env.CLIENT, process.env.SERVER],
   credentials: true,
 };
 
