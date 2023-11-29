@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import Loading from "@/components/Loading";
+import { useRouter } from 'next/navigation';
+import { isSessionIDValid } from "@/lib/IsSessionIDValid";
 
 const fetchUserProfile = async () => {
   try {
@@ -28,17 +30,19 @@ const fetchUserProfile = async () => {
 };
 
 const MyProfile = () => {
-  // const [profileData, setProfileData] = useState(null);
+  const [profileData, setProfileData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchUserProfile();
-        if (!data.valid === true) {
-          redirect('/login');
+        const token_validation = await isSessionIDValid();
+        if(!token_validation.valid){
+          return router.push('/login');
         }
-        //   setProfileData(data);
+        const data = await fetchUserProfile();
+        setProfileData(data);
       } catch (error) {
         console.log(error);
       } finally {

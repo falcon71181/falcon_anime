@@ -3,20 +3,24 @@
 import React, { useState, useEffect } from 'react';
 import LoginForm from "@/components/LoginForm";
 import { isSessionIDValid } from "@/lib/IsSessionIDValid";
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 const Login = () => {
   const [isDataFetched, setIsDataFetched] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await isSessionIDValid();
         if (data.valid === true) {
-          redirect('/profile');
+          // Perform client-side redirect
+          router.push('/profile');
         }
       } catch (error) {
-        console.log(error);
+        console.error("Error fetching data:", error);
+
+        // Handle errors (e.g., show an error message to the user)
       } finally {
         setIsDataFetched(true);
       }
