@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Loading from "@/components/Loading";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import { isSessionIDValid } from "@/lib/IsSessionIDValid";
 
 const fetchUserProfile = async () => {
@@ -22,6 +22,7 @@ const fetchUserProfile = async () => {
     }
 
     const data = await response.json();
+    console.log(data);
     return data;
   } catch (error) {
     console.error("Error fetching user profile:", error.message);
@@ -37,14 +38,14 @@ const MyProfile = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const token_validation = await isSessionIDValid();
-        if(!token_validation.valid){
-          return router.push('/login');
+        const tokenValidation = await isSessionIDValid();
+        if (!tokenValidation.valid) {
+          return router.push("/login");
         }
         const data = await fetchUserProfile();
         setProfileData(data);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       } finally {
         setLoading(false);
       }
@@ -52,6 +53,8 @@ const MyProfile = () => {
 
     fetchData();
   }, []);
+
+  const username = profileData?.email.split("@")[0] || "";
 
   return (
     <div>
@@ -79,12 +82,46 @@ const MyProfile = () => {
                   </svg>
                 </div>
                 <div class="group-hover:p-3 transition-all duration-500 delay-200">
-                  <h1 class="font-semibold text-whote text-4xl">User Name</h1>
-                  <p class="pt-1 text-ston-300 text-sm group-hover:pt-3 transition-all duration-500 delay-200">@user</p>
+                  <h1 class="font-semibold text-whote text-4xl">{username}</h1>
+                  <p class="p-3 text-ston-300 text-xs group-hover:pt-5 transition-all duration-500 delay-200">
+                    @{profileData.id}
+                  </p>
                 </div>
               </div>
             </div>
-            {/* Render other profile information */}
+            <div className="flex justify-center h-screen">
+              <div className="bg-black rounded-tl-12 rounded-tr-12 rounded-bl-4 rounded-br-4 w-[50%]">
+                <div className="font-bold p-5 text-amber-100 text-4xl flex justify-center">
+                  Profile Data
+                </div>
+                <div className="text-sm border border-gray-300">
+                  <table className="w-full">
+                    <tbody className="border-2">
+                      <tr>
+                        <td className="w-60 border-r border-gray-300 p-3 text-xl">
+                          <div className="pl-2 item text-white">Name:</div>
+                          <div className="pl-2 item text-white">Email:</div>
+                          <div className="pl-2 item text-white">ID:</div>
+                          <div className="pl-2 item text-white">Joining Date:</div>
+                        </td>
+                        <td className="text-center text-xl p-3">
+                          <div className="pl-2 item text-base">{username}</div>
+                          <div className="pl-2 item text-base">
+                            {profileData.email}
+                          </div>
+                          <div className="pl-2 item text-base">
+                            @{profileData.id}
+                          </div>
+                          <div className="pl-2 item text-base">
+                            {profileData.date}
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
         </>
       )}
