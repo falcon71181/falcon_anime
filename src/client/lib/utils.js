@@ -47,12 +47,12 @@ const getMovieData = async () => {
         const res = await fetch(`http://localhost:3001/movie`);
         const data = await res.json();
 
-        if(res.ok) return data;
+        if (res.ok) return data;
 
         if (!res.ok) {
             console.log(res.status);
             throw new Error(`Some error occured`);
-        }        
+        }
     } catch (error) {
         console.error(error);
         throw new Error(error);
@@ -64,16 +64,41 @@ const getSearchData = async (query, page) => {
         const res = await fetch(`http://localhost:3001/anime/search/?keyword=${query}&page=${page}`);
         const data = await res.json();
 
-        if(res.ok) return data;
+        if (res.ok) return data;
 
         if (!res.ok) {
             console.log(res.status);
             throw new Error(`Some error occured`);
-        }        
+        }
     } catch (error) {
         console.error(error);
         throw new Error(error);
     }
 }
 
-export { getHomeData, getGenreData, genGenreId, getMovieData, getSearchData };
+const getAnimeData = async (animeId) => {
+    try {
+        const res = await fetch(`http://localhost:3001/anime/${animeId}`);
+        const data = await res.json();
+
+        if (res.ok) return data;
+
+        if (!res.ok) {
+            console.log(res.status);
+            throw new Error('Some error occured fetching anime data');
+        }
+    } catch (error) {
+        console.error(error);
+        console.log('')
+        throw error;
+    }
+}
+
+export {
+    getHomeData,
+    getGenreData,
+    genGenreId,
+    getMovieData,
+    getSearchData,
+    getAnimeData
+};
