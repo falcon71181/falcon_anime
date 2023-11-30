@@ -94,11 +94,25 @@ const getAnimeData = async (animeId) => {
     }
 }
 
+const arrayToObject = (array) => {
+    const initialObject = {};
+
+    // TODO: Rather do this in server (Utils/extrackANIME/extractExtraAboutInfo)
+    const resObject = array.reduce((completeObject, currentObject) => {
+        const currentObjectKey = Object.keys(currentObject)[0].slice(0, -1);
+        
+        return { ...completeObject, [currentObjectKey]: currentObject[`${currentObjectKey}:`] };
+    }, initialObject)
+
+    return resObject;
+}
+
 export {
     getHomeData,
     getGenreData,
     genGenreId,
     getMovieData,
     getSearchData,
-    getAnimeData
+    getAnimeData,
+    arrayToObject
 };
