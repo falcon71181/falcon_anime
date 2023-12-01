@@ -62,11 +62,11 @@ const MyProfile = () => {
       ) : (
         <>
           <div className="min-h-screen pt-28 px-10">
-            <div class="flex relative items-center justify-center w-full">
-              <div class="rounded-full overflow-hidden relative text-center p-8 group items-center flex flex-col max-w-sm hover: transition-all duration-500 shadow-lg shadow-saffron">
-                <div class="text-gray-500 group-hover:scale-105 transition-all">
+            <div className="flex relative items-center justify-center w-full">
+              <div className="rounded-full overflow-hidden relative text-center p-8 group items-center flex flex-col max-w-sm hover: transition-all duration-500 shadow-lg shadow-saffron">
+                <div className="text-gray-500 group-hover:scale-105 transition-all">
                   <svg
-                    class="w-26 h-24"
+                    className="w-26 h-24"
                     stroke="currentColor"
                     stroke-width="1.5"
                     viewBox="0 0 24 24"
@@ -80,9 +80,9 @@ const MyProfile = () => {
                     ></path>
                   </svg>
                 </div>
-                <div class="group-hover:p-3 transition-all duration-500 delay-200">
-                  <h1 class="font-semibold text-whote text-4xl">{username}</h1>
-                  <p class="p-3 text-ston-300 text-xs group-hover:pt-5 transition-all duration-500 delay-200">
+                <div className="group-hover:p-3 transition-all duration-500 delay-200">
+                  <h1 className="font-semibold text-whote text-4xl">{username}</h1>
+                  <p className="p-3 text-ston-300 text-xs group-hover:pt-5 transition-all duration-500 delay-200">
                     @{profileData.id}
                   </p>
                 </div>
