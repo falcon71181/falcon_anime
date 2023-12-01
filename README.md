@@ -2,6 +2,27 @@
 anime API server and Nextjs client
 ## <span id="installation">💻 Installation</span>
 
+### .env
+1. .env for server .
+   ```bash
+   cd server
+   ```
+   make .env and put data in it
+   ```bash
+   SERVER_URL=mongodb+srv://xxxxxxxxxxxxxxxxxxx
+   CLIENT=http://localhost:3000
+   SERVER=http://localhost:3001
+   ```
+2. .env.local for client
+   ```bash
+   cd client
+   ```
+   make .env.local and put data int it
+   ```bash
+   NEXT_PUBLIC_SERVER=http://localhost:3001
+   NEXT_PUBLIC_CLIENT=http://localhost:3000
+   ```
+
 ### Local
 
 1. Clone the repository and move into the directory.
