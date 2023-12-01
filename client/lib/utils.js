@@ -1,6 +1,8 @@
 const getHomeData = async () => {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/home`)
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/home`, {
+            cache: 'no-store', // This option disables caching
+          })
         const data = await res.json();
 
         if (res.ok) return data;
@@ -18,7 +20,9 @@ const getHomeData = async () => {
 const getGenreData = async (genreId) => {
     // TOOD: Change to dynamic origin for prod
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/genre/${genreId}`)
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/genre/${genreId}`, {
+            cache: 'no-store', // This option disables caching
+          })
         const data = await res.json();
 
         if (res.ok) return data;
@@ -44,7 +48,9 @@ const genGenreId = (genreList) => {
 
 const getMovieData = async () => {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/movie`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/movie`, {
+            cache: 'no-store', // This option disables caching
+          })
         const data = await res.json();
 
         if (res.ok) return data;
@@ -61,7 +67,9 @@ const getMovieData = async () => {
 
 const getSearchData = async (query, page) => {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/anime/search/?keyword=${query}&page=${page}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/anime/search/?keyword=${query}&page=${page}`, {
+            cache: 'no-store', // This option disables caching
+          })
         const data = await res.json();
 
         if (res.ok) return data;
@@ -78,7 +86,9 @@ const getSearchData = async (query, page) => {
 
 const getAnimeData = async (animeId) => {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/anime/${animeId}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/anime/${animeId}`, {
+            cache: 'no-store', // This option disables caching
+          })
         const data = await res.json();
 
         if (res.ok) return data;
