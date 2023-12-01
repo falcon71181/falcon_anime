@@ -51,7 +51,7 @@ const registration = async (req, res) => {
         return res.status(500).send('Internal Server Error');
       }
 
-      return res.redirect(`${process.env.CLIENT}/health`);
+      return res.redirect(`${process.env.CLIENT}/profile`);
     });
   } catch (err) {
     console.error(err);
