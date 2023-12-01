@@ -1,11 +1,11 @@
 import passport from "passport";
 
-const login = (req, res, next) => {
+const login = (req, res) => {
     passport.authenticate('local', {
       successRedirect: `${process.env.CLIENT}/profile`,
       failureRedirect: `${process.env.CLIENT}/login`,
       failureFlash: true
-    })(req, res, next);
+    })(req, res);
 }
 
 export { login };
