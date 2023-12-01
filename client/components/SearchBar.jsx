@@ -6,7 +6,7 @@ const SearchBar = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    window.location.href = `${process.env.NEXT_PUBLIC_SERVER}/anime/search/${encodeURIComponent(searchTerm.trim().replace(/ +/g, ' ').replace(/ /g, '+'))}`;
+    window.location.href = `https://falcon-anime.vercel.app/anime/search/${encodeURIComponent(searchTerm.trim().replace(/ +/g, ' ').replace(/ /g, '+'))}`;
   };
 
   const handleInputChange = (event) => {
