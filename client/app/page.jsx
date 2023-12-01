@@ -67,12 +67,12 @@ const Home = async () => {
               </div>
               <div className="line-clamp-4 font-poppins text-white text-base my-8 md:line-clamp-2 md:leading-tight md:my-0 md:text-sm lg:text-base lg:leading-tight lg:my-0 lg:text-sm xl:line-clamp-4 xl:leading-tight xl:my-0 xl:text-base">{anime.description}</div>
               <div className="flex items-center gap-4 md:gap-1 md:flex-wrap">
-                <Link href="/watch"
+                <Link href={`${process.env.NEXT_PUBLIC_CLIENT}/anime/${anime.id}`} /// in future it need to UPDATE
                 className="flex items-center gap-1 p-2 bg-yellow-400 text-black text-lg rounded-full font-ubuntu">
                   <FaPlayCircle />
                   Watch Now
                 </Link>
-                <Link href="/detail"
+                <Link href={`${process.env.NEXT_PUBLIC_CLIENT}/anime/${anime.id}`}
                 className="flex items-center p-2 bg-gray-700 text-white gap-1 text-lg rounded-full font-ubuntu">
                   Detail <FaChevronRight size={12} />
                 </Link>
