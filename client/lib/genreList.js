@@ -42,4 +42,4 @@ const genreList = [
     "Vampire"
 ]
 
-export default genreList;
+export { genreList };
