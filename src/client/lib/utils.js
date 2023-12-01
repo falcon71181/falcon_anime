@@ -47,12 +47,12 @@ const getMovieData = async () => {
         const res = await fetch(`http://localhost:3001/movie`);
         const data = await res.json();
 
-        if(res.ok) return data;
+        if (res.ok) return data;
 
         if (!res.ok) {
             console.log(res.status);
             throw new Error(`Some error occured`);
-        }        
+        }
     } catch (error) {
         console.error(error);
         throw new Error(error);
@@ -64,16 +64,55 @@ const getSearchData = async (query, page) => {
         const res = await fetch(`http://localhost:3001/anime/search/?keyword=${query}&page=${page}`);
         const data = await res.json();
 
-        if(res.ok) return data;
+        if (res.ok) return data;
 
         if (!res.ok) {
             console.log(res.status);
             throw new Error(`Some error occured`);
-        }        
+        }
     } catch (error) {
         console.error(error);
         throw new Error(error);
     }
 }
 
-export { getHomeData, getGenreData, genGenreId, getMovieData, getSearchData };
+const getAnimeData = async (animeId) => {
+    try {
+        const res = await fetch(`http://localhost:3001/anime/${animeId}`);
+        const data = await res.json();
+
+        if (res.ok) return data;
+
+        if (!res.ok) {
+            console.log(res.status);
+            throw new Error('Some error occured fetching anime data');
+        }
+    } catch (error) {
+        console.error(error);
+        console.log('')
+        throw error;
+    }
+}
+
+const arrayToObject = (array) => {
+    const initialObject = {};
+
+    // TODO: Rather do this in server (Utils/extrackANIME/extractExtraAboutInfo)
+    const resObject = array.reduce((completeObject, currentObject) => {
+        const currentObjectKey = Object.keys(currentObject)[0].slice(0, -1);
+        
+        return { ...completeObject, [currentObjectKey]: currentObject[`${currentObjectKey}:`] };
+    }, initialObject)
+
+    return resObject;
+}
+
+export {
+    getHomeData,
+    getGenreData,
+    genGenreId,
+    getMovieData,
+    getSearchData,
+    getAnimeData,
+    arrayToObject
+};
