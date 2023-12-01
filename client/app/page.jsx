@@ -19,6 +19,7 @@ import "swiper/swiper-bundle.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Link from "next/link";
 import { getHomeData } from "@/lib/utils";
+import GenreListButton from "@/components/GenreListButton";
 import HomeAnimeCard from "@/components/HomeAnimeCard";
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
 
@@ -26,6 +27,7 @@ const Home = async () => {
   const homeData = await getHomeData();
   const topAiringAnimes = homeData.topAiringAnimes;
   const topUpcomingAnimes = homeData.topUpcomingAnimes;
+  const genreList = homeData.genres;
 
   return (
     <div className="min-h-screen pt-24 px-10 text-left">
@@ -107,6 +109,14 @@ const Home = async () => {
         <div className="grid grid-cols-4 gap-8 gap-y-14 mt-12">
           {topUpcomingAnimes.map((anime) => (
             <HomeAnimeCard key={anime.id} anime={anime} />
+          ))}
+        </div>
+      </div>
+      <div className="px-10 mt-10">
+        <h1 className="text-5xl font-bold">Genre List</h1>
+        <div className="flex flex-wrap my-12 gap-5">
+          {genreList.map((genre, index) => (
+            <GenreListButton key={index} genre={genre} />
           ))}
         </div>
       </div>
