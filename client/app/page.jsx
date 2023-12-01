@@ -74,7 +74,7 @@ const Home = async () => {
                   {anime.extra.quality}
                 </span>
               </div>
-              <div className="overflow-ellipsis pb-10 mr-10 font-poppins text-white text-base md:line-clamp-2 md:leading-tight md:my-0 md:text-sm lg:text-base lg:leading-tight lg:my-0 lg:text-sm xl:line-clamp-4 xl:leading-tight xl:my-0 xl:text-base">
+              <div className="truncate pb-10 mr-10 font-poppins text-white text-base md:line-clamp-2 md:leading-tight md:my-0 md:text-sm lg:text-base lg:leading-tight lg:my-0 lg:text-sm xl:line-clamp-4 xl:leading-tight xl:my-0 xl:text-base">
                 {anime.description}
               </div>
               <div className="flex mt-5 items-center gap-4 md:gap-1 md:flex-wrap">
