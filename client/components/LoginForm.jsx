@@ -29,7 +29,7 @@ const LoginForm = () => {
                     <span className="underline"></span>
                 </button>
                 <div className="form-wrapper">
-                    <form className="form form-login" method="POST" action="http://localhost:3001/api/login">
+                    <form className="form form-login" method="POST" action={`${process.env.NEXT_PUBLIC_SERVER}/api/login`}>
                         <fieldset>
                             <legend>Please, enter your email and password for login.</legend>
                             <div className="input-block">
@@ -51,7 +51,7 @@ const LoginForm = () => {
                     <span className="underline"></span>
                 </button>
                 <div className="form-wrapper">
-                    <form className="form form-signup" method="POST" action="http://localhost:3001/api/register">
+                    <form className="form form-signup" method="POST" action={`${process.env.NEXT_PUBLIC_SERVER}/api/register`}>
                         <fieldset>
                             <legend>Please, enter your email, password and password confirmation for sign up.</legend>
                             <div className="input-block">
