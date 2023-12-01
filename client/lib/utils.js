@@ -1,6 +1,6 @@
 const getHomeData = async () => {
     try {
-        const res = await fetch("http://localhost:3001/home")
+        const res = await fetch(`${NEXT_PUBLIC_SERVER}/home`)
         const data = await res.json();
 
         if (res.ok) return data;
@@ -18,7 +18,7 @@ const getHomeData = async () => {
 const getGenreData = async (genreId) => {
     // TOOD: Change to dynamic origin for prod
     try {
-        const res = await fetch(`http://localhost:3001/genre/${genreId}`)
+        const res = await fetch(`${NEXT_PUBLIC_SERVER}/genre/${genreId}`)
         const data = await res.json();
 
         if (res.ok) return data;
@@ -44,7 +44,7 @@ const genGenreId = (genreList) => {
 
 const getMovieData = async () => {
     try {
-        const res = await fetch(`http://localhost:3001/movie`);
+        const res = await fetch(`${NEXT_PUBLIC_SERVER}/movie`);
         const data = await res.json();
 
         if (res.ok) return data;
@@ -61,7 +61,7 @@ const getMovieData = async () => {
 
 const getSearchData = async (query, page) => {
     try {
-        const res = await fetch(`http://localhost:3001/anime/search/?keyword=${query}&page=${page}`);
+        const res = await fetch(`${NEXT_PUBLIC_SERVER}/anime/search/?keyword=${query}&page=${page}`);
         const data = await res.json();
 
         if (res.ok) return data;
@@ -78,7 +78,7 @@ const getSearchData = async (query, page) => {
 
 const getAnimeData = async (animeId) => {
     try {
-        const res = await fetch(`http://localhost:3001/anime/${animeId}`);
+        const res = await fetch(`${NEXT_PUBLIC_SERVER}/anime/${animeId}`);
         const data = await res.json();
 
         if (res.ok) return data;
