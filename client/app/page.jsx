@@ -25,7 +25,7 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
 const Home = async () => {
   const homeData = await getHomeData();
   const topAiringAnimes = homeData.topAiringAnimes;
-  console.log(topAiringAnimes);
+  const topUpcomingAnimes = homeData.topUpcomingAnimes;
 
   return (
     <div className="min-h-screen pt-24 px-10 text-left">
@@ -98,6 +98,14 @@ const Home = async () => {
         <h1 className="text-5xl font-bold">Top Airing Animes</h1>
         <div className="grid grid-cols-4 gap-8 gap-y-14 mt-12">
           {topAiringAnimes.map((anime) => (
+            <HomeAnimeCard key={anime.id} anime={anime} />
+          ))}
+        </div>
+      </div>
+      <div className="min-h-screen pt-5 px-10">
+        <h1 className="text-5xl font-bold">Top Upcoming Animes</h1>
+        <div className="grid grid-cols-4 gap-8 gap-y-14 mt-12">
+          {topUpcomingAnimes.map((anime) => (
             <HomeAnimeCard key={anime.id} anime={anime} />
           ))}
         </div>
