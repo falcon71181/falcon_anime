@@ -4,7 +4,7 @@ import Link from "next/link";
 // TODO: Shift to env var
 const CLIENT_BASE_URL = process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000'
-    : 'http://future-prod-domain.com';
+    : `${NEXT_PUBLIC_CLIENT}`;
 
 const AnimeCard = ({ anime }) => {
     return (
