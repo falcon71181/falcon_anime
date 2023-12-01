@@ -4,7 +4,7 @@ import Link from "next/link";
 // TODO: Shift to env var
 const CLIENT_BASE_URL = process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000'
-    : `${NEXT_PUBLIC_CLIENT}`;
+    : 'https://falcon-anime.vercel.app';
 
 const AnimeCard = ({ anime }) => {
     return (
