@@ -52,7 +52,7 @@ const generateStaticParams = () => {
 
 const Genre = async ({ params }) => {
     // TODO: Do something with error for client UI update
-    const genreData = await getGenreData(params.slug);
+    const genreData = await getGenreData(params.id);
 
     return (
         <div className='min-h-screen pt-28 px-10'>
