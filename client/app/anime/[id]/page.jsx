@@ -64,11 +64,11 @@ const Anime = async ({ params }) => {
                         <div className='text-lg text-black flex gap-3 text-semibold'>
                             <div className='h-10 py-3 px-4 bg-yellow-300 rounded-full cursor-pointer flex items-center gap-2'>
                                 <div className='rotate-90 inline-block'>&#x25B2;</div>
-                                <h1>Watch now</h1>
+                                <a href="/unknown"><h1 className="no-underline text-black">Watch now</h1></a>
                             </div>
                             <div className='h-10 py-3 px-4 bg-white/90 rounded-full cursor-pointer flex items-center gap-2'>
                                 <div className='inline-block'>&#x271A;</div>
-                                <h1>Add to List</h1>
+                                <a href="/unknown"><h1 className="no-underline text-black">Add to List</h1></a>
                             </div>
                         </div>
 
