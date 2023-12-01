@@ -64,3 +64,283 @@ anime API server and Nextjs client
    ```
 
    Now the server should be running on [http://localhost:3000] - (http://localhost:3000)
+
+### `GET` Anime Home Page
+
+#### Endpoint
+
+```bash
+https://https://falconanime.onrender.com/home
+```
+
+#### Request sample
+
+```javascript
+const resp = await fetch("https://falconanime.onrender.com/home");
+const data = await resp.json();
+console.log(data);
+```
+
+#### Response Schema
+
+```javascript
+{
+  genres: ["Action", "Cars", "Adventure", ...],
+  latestEpisodeAnimes: [
+    {
+      id: string,
+      name: string,
+      poster: string,
+      duration: string,
+      type: string,
+      rating: string,
+      episodes: {
+        sub: number,
+        dub: number,
+      }
+    },
+    {...},
+  ],
+  spotlightAnimes: [
+    {
+      id: string,
+      name: string,
+      jname: string,
+      poster: string,
+      description: string,
+      rank: number,
+      otherInfo: string[],
+      episodes: {
+        sub: number,
+        dub: number,
+      },
+    },
+    {...},
+  ],
+  top10Animes: {
+    today: [
+      {
+        episodes: {
+          sub: number,
+          dub: number,
+        },
+        id: string,
+        name: string,
+        poster: string,
+        rank: number
+      },
+      {...},
+    ],
+    month: [...],
+    week: [...]
+  },
+  topAiringAnimes: [
+    {
+      id: string,
+      name: string,
+      jname: string,
+      poster: string,
+    },
+    {...},
+  ],
+  topUpcomingAnimes: [
+    {
+      id: string,
+      name: string,
+      poster: string,
+      duration: string,
+      type: string,
+      rating: string,
+      episodes: {
+        sub: number,
+        dub: number,
+      }
+    },
+    {...},
+  ],
+  trendingAnimes: [
+    {
+      id: string,
+      name: string,
+      poster: string,
+      rank: number,
+    },
+    {...},
+  ],
+}
+```
+
+### `GET` Anime About Info
+
+#### Endpoint
+
+```sh
+https://falconanime.onrender.com/anime/:id
+```
+
+#### Query Parameters
+
+| Parameter |  Type  |             Description              | Required? | Default |
+| :-------: | :----: | :----------------------------------: | :-------: | :-----: |
+|   `id`    | string | The unique anime id (in kebab case). |    Yes    |   --    |
+
+#### Request sample
+
+```javascript
+const resp = await fetch(
+  "https://falconanime.onrender.com/anime/jujutsu-kaisen-2nd-season-18413"
+);
+const data = await res.json();
+console.log(data);
+```
+
+#### Response Schema
+
+```javascript
+{
+  anime: [
+    info: {
+      id: string,
+      name: string,
+      poster: string,
+      description: string,
+      stats: {
+        rating: string,
+        quality: string,
+        episodes: {
+          sub: number,
+          dub: number
+        },
+        type: string,
+        duration: string
+      }
+    }
+    moreInfo: {
+      aired: string,
+      genres: ["Action", "Mystery", ...],
+      status: string,
+      studios: string,
+      duration: string
+      ...
+    }
+  ],
+  mostPopularAnimes: [
+    {
+      episodes: {
+        sub: number,
+        dub: number,
+      },
+      id: string,
+      jname: string,
+      name: string,
+      poster: string,
+      type: string
+    },
+    {...},
+  ],
+  recommendedAnimes: [
+    {
+      id: string,
+      name: string,
+      poster: string,
+      duration: string,
+      type: string,
+      rating: string,
+      episodes: {
+        sub: number,
+        dub: number,
+      }
+    },
+    {...},
+  ],
+  relatedAnimes: [
+    {
+      id: string,
+      name: string,
+      poster: string,
+      duration: string,
+      type: string,
+      rating: string,
+      episodes: {
+        sub: number,
+        dub: number,
+      }
+    },
+    {...},
+  ],
+  seasons: [
+    {
+      id: string,
+      name: string,
+      title: string,
+      poster: string,
+      isCurrent: boolean
+    },
+    {...}
+  ]
+}
+```
+
+### `GET` Search Results
+
+#### Endpoint
+
+```sh
+https://falconanime.onrender.com/anime/search?q={query}&page={page}
+```
+
+#### Query Parameters
+
+| Parameter |  Type  |                            Description                            | Required? | Default |
+| :-------: | :----: | :---------------------------------------------------------------: | :-------: | :-----: |
+|    `q`    | string | The search query, i.e. the title of the item you are looking for. |    Yes    |   --    |
+|  `page`   | number |                  The page number of the result.                   |    No     |   `1`   |
+
+#### Request sample
+
+```javascript
+const resp = await fetch(
+  "https://falconanime.onrender.com/anime/search?q=titan&page=1"
+);
+const data = await resp.json();
+console.log(data);
+```
+
+#### Response Schema
+
+```javascript
+{
+  animes: [
+    {
+      id: string,
+      name: string,
+      poster: string,
+      duration: string,
+      type: string,
+      rating: string,
+      episodes: {
+        sub: number,
+        dub: number,
+      }
+    },
+    {...},
+  ],
+  mostPopularAnimes: [
+    {
+      episodes: {
+        sub: number,
+        dub: number,
+      },
+      id: string,
+      jname: string,
+      name: string,
+      poster: string,
+      type: string
+    },
+    {...},
+  ],
+  currentPage: 1,
+  totalPages: 1,
+  hasNextPage: false
+}
+```
