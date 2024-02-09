@@ -1,3 +1,9 @@
+> [!CAUTION]
+> Project is abandoned
+
+> [!IMPORTANT]
+> new Project is underway with <kbd>TypeScript</kbd> and <kbd>React</kbd>
+
 # falcon_anime
 anime API server and Nextjs client
 ## <span id="installation">💻 Installation</span>
